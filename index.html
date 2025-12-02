@@ -925,6 +925,77 @@
         }
 
         /* =====================================================================
+           SECCIÓN IMPACTO - Datos reales de pérdidas por incendios
+           =====================================================================
+           Muestra estadísticas impactantes para generar urgencia
+           Fondo rojo/naranja para transmitir seriedad del problema
+        */
+        .impact {
+            background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #b91c1c 100%);
+            color: var(--white);
+        }
+
+        .impact-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .impact-header .section-label {
+            color: #fca5a5;
+        }
+
+        .impact-header h2 {
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .impact-header p {
+            color: #fecaca;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .impact-stat {
+            text-align: center;
+            padding: 24px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .impact-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fef2f2;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .impact-stat-label {
+            font-size: 0.9rem;
+            color: #fecaca;
+            line-height: 1.4;
+        }
+
+        .impact-source {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #fca5a5;
+        }
+
+        .impact-source strong {
+            color: var(--white);
+        }
+
+        /* =====================================================================
            SECCIÓN TECNOLOGÍA - El diferenciador SAOCOM
            =====================================================================
            2 columnas: texto explicativo + tarjeta del satélite
@@ -1323,6 +1394,11 @@
             .capability-connector {
                 transform: rotate(90deg);
             }
+
+            /* Impact stats en tablets */
+            .impact-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* ===== CELULARES (menos de 768px) ===== */
@@ -1368,6 +1444,15 @@
 
             .cta-actions {
                 flex-direction: column;
+            }
+
+            /* Impact stats en móviles */
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-stat-value {
+                font-size: 2rem;
             }
 
             .footer-content {
@@ -1672,6 +1757,48 @@
         </div>
     </section>
 
+    <!-- ===== SECCIÓN IMPACTO REAL =====
+         Datos duros de pérdidas por incendios en Córdoba/Argentina
+         Genera urgencia con estadísticas reales
+    -->
+    <section class="impact" id="impacto">
+        <div class="container">
+            <div class="impact-header">
+                <span class="section-label">Impacto Real</span>
+                <h2 class="section-title">El costo de no prevenir</h2>
+                <p class="section-description">
+                    Los incendios forestales generan pérdidas millonarias cada año en Argentina.
+                    Estos son los números reales de Córdoba.
+                </p>
+            </div>
+            
+            <div class="impact-stats">
+                <div class="impact-stat">
+                    <div class="impact-stat-value">103.327</div>
+                    <div class="impact-stat-label">Hectáreas quemadas<br>en Córdoba (2024)</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-value">+150%</div>
+                    <div class="impact-stat-label">Aumento vs 2023<br>Récord histórico</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-value">2.1M</div>
+                    <div class="impact-stat-label">Hectáreas perdidas<br>en 36 años (1987-2023)</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-value">Miles de<br>millones</div>
+                    <div class="impact-stat-label">en pérdidas económicas<br>anuales (ARS)</div>
+                </div>
+            </div>
+            
+            <div class="impact-source">
+                <strong>Fuentes oficiales:</strong> Instituto Gulich (CONAE/UNC), IDECOR, 
+                Secretaría de Gestión de Riesgo Climático de Córdoba, 
+                Federación de Bomberos Voluntarios de Córdoba.
+            </div>
+        </div>
+    </section>
+
     <!-- ===== SECCIÓN SOLUCIÓN =====
          Qué ofrece GeoAlertAR - PREDICCIÓN + DETECCIÓN
     -->
@@ -1936,7 +2063,7 @@
                         <div class="contact-icon">👤</div>
                         <div class="contact-info">
                             <strong>Federico Nicolás Sinato</strong>
-                            <span>Desarrollador Principal de GeoAlertAR</span>
+                            <span>Desarrollador Principal</span>
                         </div>
                     </div>
                     
