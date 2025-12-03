@@ -756,6 +756,10 @@
             border-color: var(--risk-high);
         }
 
+        .capability-card.social {
+            border-color: var(--primary-500);
+        }
+
         .capability-header {
             display: flex;
             align-items: center;
@@ -783,6 +787,11 @@
 
         .capability-card.detection .capability-badge {
             background: var(--risk-high);
+            color: var(--white);
+        }
+
+        .capability-card.social .capability-badge {
+            background: var(--primary-500);
             color: var(--white);
         }
 
@@ -1806,15 +1815,14 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Nuestra Solución</span>
-                <h2 class="section-title">Predicción + Detección: ciclo completo de protección</h2>
+                <h2 class="section-title">Predicción + Detección + Priorización</h2>
                 <p class="section-description">
-                    GeoAlertAR no solo predice el riesgo de incendio, también detecta focos activos 
-                    en tiempo real. Cuando un incendio aparece en una zona marcada como crítica, 
-                    validamos que el sistema funciona.
+                    GeoAlertAR predice el riesgo, detecta focos activos en tiempo real, 
+                    y prioriza zonas según su impacto social. Un ciclo completo de protección.
                 </p>
             </div>
             
-            <!-- ===== BLOQUE DE DOS CAPACIDADES: PREDICCIÓN Y DETECCIÓN ===== -->
+            <!-- ===== BLOQUE DE TRES CAPACIDADES: PREDICCIÓN, DETECCIÓN E IMPACTO SOCIAL ===== -->
             <div class="dual-capability">
                 <div class="capability-card prediction">
                     <div class="capability-header">
@@ -1838,11 +1846,27 @@
                         <span class="capability-badge">TIEMPO REAL</span>
                     </div>
                     <h3>Detección de Focos Activos</h3>
-                    <p>Integramos datos de CONAE y NASA FIRMS para detectar incendios <strong>en el momento</strong> que ocurren.</p>
+                    <p>Integramos datos de CONAE y NASA  para detectar incendios <strong>en el momento</strong> que ocurren.</p>
                     <ul class="capability-list">
-                        <li>API de focos de calor CONAE</li>
-                        <li>NASA FIRMS (próximamente)</li>
+                        <li>Focos de calor CONAE</li>
+                        <li>NASA FIRMS </li>
                         <li>Validación cruzada con predicción</li>
+                    </ul>
+                </div>
+                <div class="capability-connector">
+                    <span>+</span>
+                </div>
+                <div class="capability-card social">
+                    <div class="capability-header">
+                        <span class="capability-icon">👥</span>
+                        <span class="capability-badge">PRIORIZACIÓN</span>
+                    </div>
+                    <h3>Análisis Social y Territorial</h3>
+                    <p>No solo analizamos dónde puede iniciarse un incendio, sino <strong>dónde tendría mayor impacto</strong>.</p>
+                    <ul class="capability-list">
+                        <li>Datos de población e infraestructura</li>
+                        <li>Comunidades vulnerables</li>
+                        <li>Ubicación de cuarteles de bomberos</li>
                     </ul>
                 </div>
             </div>
@@ -2063,16 +2087,16 @@
                         <div class="contact-icon">👤</div>
                         <div class="contact-info">
                             <strong>Federico Nicolás Sinato</strong>
-                            <span>Desarrollador Principal & Arquitecto del Sistema</span>
+                            <span>Desarrollador Principal & Arquitecto del Sistema | Teledetección (CONAE & NASA ARSET)</span>
                         </div>
                     </div>
                     
                     <!-- camila rivas -->
                     <div class="contact-item">
                         <div class="contact-icon">👤</div>
-                        <div class="contact-info">  
+                        <div class="contact-info">
                             <strong>Camila Rivas</strong>
-                            <span>Lic. en Geografia Ambiental & Especialista GIS (QGIS & Capas Cartográficas)</span>
+                            <span>Especialista en Geografia Ambiental & GIS (QGIS & Capas Cartográficas)</span>
                         </div>
                     </div>
                     
@@ -2089,8 +2113,8 @@
                         <div class="contact-icon">🌐</div>
                         <div class="contact-info">
                             <a href="https://geoalertar.com.ar" target="_blank">geoalertar.com.ar</a>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                     
                     <!-- PAÍS -->
                     <div class="contact-item">
@@ -2100,7 +2124,7 @@
                         </div>
                     </div>
                     
-                    <!-- PARA AGREGAR WHATSAPP, DESCOMENTÁ ESTO: -->
+                     <!--PARA AGREGAR WHATSAPP, DESCOMENTÁ ESTO:-->
                     <div class="contact-item">
                         <div class="contact-icon">📱</div>
                         <div class="contact-info">
