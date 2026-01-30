@@ -422,6 +422,44 @@
             color: var(--neutral-500);
         }
 
+        /* ===== TRUST LOGOS ===== */
+        .trust-section {
+            padding: 40px 0;
+            background: var(--neutral-50);
+            border-top: 1px solid var(--neutral-200);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .trust-label {
+            text-align: center;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--neutral-500);
+            margin-bottom: 24px;
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .trust-logos img {
+            height: 40px;
+            width: auto;
+            opacity: 0.7;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .trust-logos img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
@@ -470,6 +508,20 @@
                     <div class="hero-stat-value">Validado</div>
                     <div class="hero-stat-label">Con datos reales</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST LOGOS -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-label">Validado con datos de</div>
+            <div class="trust-logos">
+                <img src="img/nasa-1.svg" alt="NASA">
+                <img src="img/images.png" alt="CONAE">
+                <img src="img/images.jpg" alt="NASA FIRMS">
+                <img src="img/LogoWithTextColor.png" alt="NASA ARSET">
+                <img src="img/images (1).jpg" alt="NASA Space Apps Challenge">
             </div>
         </div>
     </section>
@@ -561,41 +613,33 @@
         <div class="container">
             <div class="story-content">
                 <div class="story-text">
-                    <h2>Cómo empezó</h2>
+                    <h2>Quiénes somos</h2>
                     <p>
-                        La pregunta era simple: ¿por qué con toda la tecnología satelital que existe hoy, seguimos enterándonos de los incendios cuando ya empezaron?. 
-                        <p> 
-                        <strong>GeoalertAR</strong> nació de esa pregunta. De la experiencia de haber sido bombero voluntario y saber que Argentina necesita algo mejor.
+                        GeoalertAR nació de una pregunta incómoda: ¿por qué con toda la tecnología satelital disponible, seguimos reaccionando cuando el fuego ya está quemando?
                     </p>
                     <p>
-                        Lo que comenzó como un proyecto personal fue creciendo: especializaciones en teledetección (CONAE), ciencia de datos, capacitaciones de NASA y NASA FIRMS, pruebas con datos satelitales, y mucho código.    
-                    
+                        La respuesta no la encontramos en un paper. La encontramos en el terreno —tras haber sido bombero voluntario y entender que cuando suena la alarma, el fuego ya lleva ventaja.
                     </p>
                     <p class="highlight">
-                        En el NASA Space Apps Challenge 2025 el equipo se completó y ganó el reconocimiento "Best mission Concept". Pero el premio fue solo el comienzo..
+                        Ganamos el "Best Mission Concept" en NASA Space Apps Challenge 2025. Hoy el sistema está activo, validándose en tiempo real con los incendios de la Patagonia.
                     </p>
                     <p>
-                        Hoy el sistema cubre toda Argentina y está diseñado
-                        para escalar a Latinoamérica. Se valida contra incendios
-                        reales y está siendo probado durante la actual crisis de incendios en la Patagonia. Se sigue mejorando todos los días.
+                        Somos Federico y Camila. Él viene del desarrollo y la teledetección. Ella de la geografía ambiental y los sistemas de información geográfica. Juntos construimos algo que creemos puede cambiar cómo Argentina enfrenta el fuego.
                     </p>
-                    <p>
-                        <strong>Detrás de esto estamos Fede y Cami.</strong> Somos dos personas con la convicción de que esta herramienta puede hacer una diferencia. 
-                                            </p>
                 </div>
                 <div class="team-cards">
                     <div class="team-card">
                         <div class="team-card-name">Federico Nicolás Sinato</div>
-                        <div class="team-card-role">Desarrollador Principal</div>
+                        <div class="team-card-role">Desarrollo & Teledetección</div>
                         <div class="team-card-role" style="margin-top: 8px; color: var(--neutral-600);">
-                            Teledetección Optica & Nasa Firms  (CONAE, NASA ARSET)
+                            Ex bombero voluntario · CONAE · NASA ARSET
                         </div>
                     </div>
                     <div class="team-card">
                         <div class="team-card-name">Camila Rivas</div>
                         <div class="team-card-role">Geografía Ambiental & GIS</div>
                         <div class="team-card-role" style="margin-top: 8px; color: var(--neutral-600);">
-                            QGIS, Capas Cartográficas
+                            Análisis espacial · Cartografía · QGIS
                         </div>
                     </div>
                 </div>
