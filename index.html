@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         :root {
             --primary-900: #0f172a;
@@ -380,6 +383,13 @@
             font-weight: 700;
             font-size: 0.95rem;
             color: var(--primary-900);
+            margin-bottom: 8px;
+        }
+
+        .app-item-desc {
+            font-size: 0.85rem;
+            color: var(--neutral-600);
+            line-height: 1.5;
         }
 
         /* ===== CONTACTO ===== */
@@ -472,6 +482,277 @@
         @media (max-width: 480px) {
             .solution-points, .apps-grid, .crisis-stats { grid-template-columns: 1fr; }
         }
+
+        /* ===== DATA SECTION ===== */
+        .data-section {
+            padding: 60px 0;
+            background: var(--neutral-50);
+        }
+
+        .data-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .data-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .data-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .data-header p {
+            color: var(--neutral-600);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .data-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .data-card-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-900);
+            margin-bottom: 4px;
+        }
+
+        .data-card-label {
+            font-size: 0.85rem;
+            color: var(--neutral-600);
+        }
+
+        /* ===== DEMO MAP SECTION ===== */
+        .demo-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .demo-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .demo-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .demo-header p {
+            font-size: 1.05rem;
+            color: var(--neutral-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .demo-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+            background: var(--neutral-50);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--neutral-200);
+        }
+
+        #map {
+            height: 520px;
+            width: 100%;
+        }
+
+        .demo-sidebar {
+            padding: 24px;
+            background: var(--primary-900);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .demo-sidebar h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .demo-sidebar-intro {
+            font-size: 0.9rem;
+            color: var(--neutral-400);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .hex-info {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .hex-info.active {
+            display: flex;
+        }
+
+        .hex-info-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--primary-700);
+        }
+
+        .hex-risk-badge {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .risk-extremo { background: #dc2626; color: white; }
+        .risk-alto { background: #f97316; color: white; }
+        .risk-moderado { background: #eab308; color: #1a1a1a; }
+        .risk-bajo { background: #22c55e; color: white; }
+
+        .hex-prob {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .hex-prob span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--neutral-400);
+        }
+
+        .hex-explanation {
+            background: var(--primary-800);
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .hex-explanation-title {
+            font-size: 0.7rem;
+            color: var(--neutral-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .hex-explanation-text {
+            font-size: 0.9rem;
+            color: var(--neutral-200);
+            line-height: 1.5;
+        }
+
+        .hex-data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .hex-data-item {
+            background: var(--primary-800);
+            padding: 10px 12px;
+            border-radius: 6px;
+        }
+
+        .hex-data-label {
+            font-size: 0.65rem;
+            color: var(--neutral-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+
+        .hex-data-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .demo-legend {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--primary-700);
+        }
+
+        .demo-legend h4 {
+            font-size: 0.75rem;
+            color: var(--neutral-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--neutral-300);
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 900px) {
+            .data-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .demo-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-sidebar {
+                order: -1;
+            }
+            
+            #map {
+                height: 400px;
+            }
+            
+            .legend-items { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -493,7 +774,7 @@
                 Sistema argentino que anticipa dónde se generarán condiciones críticas de fuego 
                 <strong>antes de que ocurran</strong> a partir de análisis avanzados de datos ambientales y satelitales.
             </p>
-            <a href="#contacto" class="hero-cta">Conocé más</a>
+            <a href="#demo" class="hero-cta">Ver demo interactiva</a>
             
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -522,6 +803,108 @@
                 <img src="img/images.jpg" alt="NASA FIRMS">
                 <img src="img/LogoWithTextColor.png" alt="NASA ARSET">
                 <img src="img/images (1).jpg" alt="NASA Space Apps Challenge">
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPACIDAD DE DATOS -->
+    <section class="data-section">
+        <div class="data-container">
+            <div class="data-header">
+                <h2>Capacidad de datos</h2>
+                <p>Nuestro modelo está entrenado con datos históricos verificados de incendios en Argentina y fuentes satelitales globales.</p>
+            </div>
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="data-card-value">+200K</div>
+                    <div class="data-card-label">Incendios confirmados (entrenamiento)</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">2001-2025</div>
+                    <div class="data-card-label">Años de datos históricos</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">7</div>
+                    <div class="data-card-label">Fuentes satelitales integradas</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-value">96%</div>
+                    <div class="data-card-label">F1-Score del modelo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO INTERACTIVA -->
+    <section class="demo-section" id="demo">
+        <div class="demo-container">
+            <div class="demo-header">
+                <h2>Mirá cómo funciona</h2>
+                <p>Vista previa de la interfaz del sistema. Los datos mostrados son ilustrativos para demostrar el funcionamiento.</p>
+            </div>
+            <div class="demo-wrapper">
+                <div id="map"></div>
+                <div class="demo-sidebar">
+                    <h3>Análisis de zona</h3>
+                    <p class="demo-sidebar-intro" id="sidebar-intro">
+                        Ejemplo de interfaz. Seleccioná un hexágono para ver cómo se presenta el análisis de riesgo.
+                    </p>
+                    
+                    <div class="hex-info" id="hex-info">
+                        <div class="hex-info-header">
+                            <span class="hex-risk-badge" id="hex-risk">EXTREMO</span>
+                            <div class="hex-prob"><span id="hex-prob-value">98.4</span>% <span>riesgo</span></div>
+                        </div>
+                        
+                        <div class="hex-explanation">
+                            <div class="hex-explanation-title">¿Por qué este nivel?</div>
+                            <div class="hex-explanation-text" id="hex-explanation">
+                                Cargando análisis...
+                            </div>
+                        </div>
+                        
+                        <div class="hex-data-grid">
+                            <div class="hex-data-item">
+                                <div class="hex-data-label">Temperatura</div>
+                                <div class="hex-data-value"><span id="hex-temp">--</span>°C</div>
+                            </div>
+                            <div class="hex-data-item">
+                                <div class="hex-data-label">Viento</div>
+                                <div class="hex-data-value"><span id="hex-wind">--</span> km/h</div>
+                            </div>
+                            <div class="hex-data-item">
+                                <div class="hex-data-label">Precip. 7 días</div>
+                                <div class="hex-data-value"><span id="hex-rain">--</span> mm</div>
+                            </div>
+                            <div class="hex-data-item">
+                                <div class="hex-data-label">Pendiente</div>
+                                <div class="hex-data-value"><span id="hex-slope">--</span>°</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-legend">
+                        <h4>Niveles de riesgo</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #dc2626;"></div>
+                                Extremo (>80%)
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #f97316;"></div>
+                                Alto (60-80%)
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #eab308;"></div>
+                                Moderado (40-60%)
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #22c55e;"></div>
+                                Bajo (<40%)
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -688,24 +1071,28 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
                     </div>
                     <div class="app-item-title">Gobiernos</div>
+                    <div class="app-item-desc">Planificación de recursos y alertas tempranas a la población antes de que el riesgo escale.</div>
                 </div>
                 <div class="app-item">
                     <div class="app-item-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22v-7"/><path d="M9 22h6"/><path d="M12 15l-4-4h2l-3-3h2l-3-4h12l-3 4h2l-3 3h2z"/></svg>
                     </div>
                     <div class="app-item-title">Forestales</div>
+                    <div class="app-item-desc">Protección de plantaciones y bosques nativos con monitoreo continuo de zonas críticas.</div>
                 </div>
                 <div class="app-item">
                     <div class="app-item-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
                     </div>
                     <div class="app-item-title">Aseguradoras</div>
+                    <div class="app-item-desc">Evaluación de riesgo por zona para pricing de pólizas y prevención de siniestros.</div>
                 </div>
                 <div class="app-item">
                     <div class="app-item-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
                     </div>
                     <div class="app-item-title">Bomberos</div>
+                    <div class="app-item-desc">Anticipación táctica para pre-posicionar recursos donde el riesgo es inminente.</div>
                 </div>
             </div>
         </div>
@@ -725,7 +1112,7 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <a href="mailto:geoalertar1@gmail.com">geoalertar1@gmail.com</a>
+                        <a href="/cdn-cgi/l/email-protection#2245474d434e47505643501362454f434b4e0c414d4f"><span class="__cf_email__" data-cfemail="b3d4d6dcd2dfd6c1c7d2c182f3d4ded2dadf9dd0dcde">[email&#160;protected]</span></a>
                     </div>
                     <div class="contact-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -747,12 +1134,316 @@
         </div>
     </footer>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
     <script>
+        // Configuración
+        const RESERVA_NAME = "Reserva de Biosfera Andino Norpatagónica";
+        const HEX_RADIUS = 0.06; // Radio del hexágono en grados (~6km)
+
+        // Corrección para distorsión de proyección a latitud -41°
+        const LAT_CORRECTION = Math.cos(-41 * Math.PI / 180); // ~0.755
+
+        // Función para generar hexágono FLAT-TOP (sin superposición)
+        function createHexagon(centerLat, centerLng) {
+            const coords = [];
+            // Flat-top: vértices en 0°, 60°, 120°, 180°, 240°, 300°
+            for (let i = 0; i < 6; i++) {
+                const angle = (60 * i) * Math.PI / 180;
+                // Ajustar longitud por distorsión de proyección
+                const lng = centerLng + (HEX_RADIUS / LAT_CORRECTION) * Math.cos(angle);
+                const lat = centerLat + HEX_RADIUS * Math.sin(angle);
+                coords.push([lng, lat]);
+            }
+            coords.push(coords[0]);
+            return coords;
+        }
+
+        // Espaciado correcto para hexágonos flat-top contiguos
+        const HORIZ_SPACING = (3 * HEX_RADIUS / 2) / LAT_CORRECTION;
+        const VERT_SPACING = Math.sqrt(3) * HEX_RADIUS;
+
+        // Point in polygon (ray casting algorithm)
+        function pointInPolygon(lat, lng, polygon) {
+            let inside = false;
+            const coords = polygon[0]; // Primer anillo del polígono
+
+            for (let i = 0, j = coords.length - 1; i < coords.length; j = i++) {
+                const xi = coords[i][0], yi = coords[i][1];
+                const xj = coords[j][0], yj = coords[j][1];
+
+                if (((yi > lat) !== (yj > lat)) &&
+                    (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi)) {
+                    inside = !inside;
+                }
+            }
+            return inside;
+        }
+
+        // Verificar si punto está en cualquier polígono del MultiPolygon
+        function isInsideReserva(lat, lng, multiPolygon) {
+            for (const polygon of multiPolygon) {
+                if (pointInPolygon(lat, lng, polygon)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Generar nivel de riesgo basado en posición
+        function generateRiskData(lat, lng, index) {
+            const seed = Math.abs(Math.sin(lat * 1000 + lng * 500 + index)) * 100;
+
+            let baseRisk = 45;
+            if (lat > -41.0) baseRisk += 20;
+            if (lng < -71.5) baseRisk += 15;
+
+            const prob = Math.max(15, Math.min(95, baseRisk + (seed % 35) - 15));
+
+            let nivel;
+            if (prob >= 80) nivel = "EXTREMO";
+            else if (prob >= 60) nivel = "ALTO";
+            else if (prob >= 40) nivel = "MODERADO";
+            else nivel = "BAJO";
+
+            const tempBase = { EXTREMO: 30, ALTO: 24, MODERADO: 18, BAJO: 12 };
+            const temp = tempBase[nivel] + (seed % 5);
+            const viento = nivel === "EXTREMO" ? 28 + (seed % 12) :
+                          nivel === "ALTO" ? 18 + (seed % 8) :
+                          nivel === "MODERADO" ? 10 + (seed % 6) : 4 + (seed % 4);
+            const precip = nivel === "EXTREMO" ? seed % 5 :
+                          nivel === "ALTO" ? seed % 12 :
+                          nivel === "MODERADO" ? 15 + (seed % 20) : 30 + (seed % 25);
+
+            // Pendiente del terreno (simulada basada en posición)
+            const pendiente = 5 + (seed % 25);
+
+            return {
+                probabilidad: Math.round(prob * 10) / 10,
+                nivel_riesgo: nivel,
+                temp_aire: Math.round(temp * 10) / 10,
+                viento_kmh: Math.round(viento * 10) / 10,
+                precip_7d: Math.round(precip * 10) / 10,
+                pendiente: Math.round(pendiente)
+            };
+        }
+
+        // Generar grilla hexagonal dentro de bounds
+        function generateHexGridInBounds(bounds, multiPolygon) {
+            const features = [];
+
+            const startLat = bounds.getNorth();
+            const endLat = bounds.getSouth();
+            const startLng = bounds.getWest();
+            const endLng = bounds.getEast();
+
+            let index = 0;
+            let row = 0;
+
+            for (let lat = startLat; lat >= endLat; lat -= VERT_SPACING) {
+                // Offset para filas impares (la mitad del espaciado horizontal)
+                const offset = (row % 2) * (HORIZ_SPACING / 2);
+
+                for (let lng = startLng + offset; lng <= endLng; lng += HORIZ_SPACING) {
+                    // Solo agregar si está dentro de la reserva
+                    if (isInsideReserva(lat, lng, multiPolygon)) {
+                        const riskData = generateRiskData(lat, lng, index);
+
+                        features.push({
+                            type: "Feature",
+                            properties: {
+                                hex_id: `hex_${index}`,
+                                latitude: lat,
+                                longitude: lng,
+                                region: RESERVA_NAME,
+                                ...riskData
+                            },
+                            geometry: {
+                                type: "Polygon",
+                                coordinates: [createHexagon(lat, lng)]
+                            }
+                        });
+                        index++;
+                    }
+                }
+                row++;
+            }
+            return { type: "FeatureCollection", features };
+        }
+
+        // Función para generar explicación según las variables
+        function generateExplanation(props) {
+            const temp = props.temp_aire;
+            const viento = props.viento_kmh;
+            const lluvia = props.precip_7d;
+            const nivel = props.nivel_riesgo;
+            
+            let reasons = [];
+            
+            if (temp >= 28) {
+                reasons.push("temperatura muy elevada (" + temp.toFixed(1) + "°C)");
+            } else if (temp >= 22) {
+                reasons.push("temperatura alta (" + temp.toFixed(1) + "°C)");
+            } else if (temp <= 10) {
+                reasons.push("temperatura baja (" + temp.toFixed(1) + "°C) reduce el riesgo");
+            }
+            
+            if (viento >= 25) {
+                reasons.push("vientos muy fuertes (" + viento.toFixed(1) + " km/h) favorecen propagación rápida");
+            } else if (viento >= 15) {
+                reasons.push("vientos moderados a fuertes (" + viento.toFixed(1) + " km/h)");
+            } else if (viento < 5) {
+                reasons.push("vientos calmos");
+            }
+            
+            if (lluvia < 2) {
+                reasons.push("prácticamente sin lluvias en los últimos 7 días");
+            } else if (lluvia < 10) {
+                reasons.push("precipitaciones escasas (" + lluvia.toFixed(1) + " mm)");
+            } else if (lluvia >= 50) {
+                reasons.push("lluvias recientes significativas (" + lluvia.toFixed(1) + " mm) reducen el riesgo");
+            } else if (lluvia >= 20) {
+                reasons.push("lluvias moderadas (" + lluvia.toFixed(1) + " mm)");
+            }
+            
+            let intro = "";
+            if (nivel === "EXTREMO") {
+                intro = "Condiciones críticas: ";
+            } else if (nivel === "ALTO") {
+                intro = "Condiciones de riesgo elevado: ";
+            } else if (nivel === "MODERADO") {
+                intro = "Condiciones intermedias: ";
+            } else {
+                intro = "Condiciones favorables: ";
+            }
+            
+            return reasons.length > 0 ? intro + reasons.join(", ") + "." : intro + "múltiples factores combinados determinan este nivel de riesgo.";
+        }
+
+        // Inicializar mapa (sin controles de zoom ni navegación)
+        const map = L.map('map', {
+            zoomControl: false,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            touchZoom: false,
+            dragging: false,
+            keyboard: false
+        }).setView([-41, -71.5], 7);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: ''
+        }).addTo(map);
+
+        function getColor(prob) {
+            if (prob >= 80) return '#dc2626';
+            if (prob >= 60) return '#f97316';
+            if (prob >= 40) return '#eab308';
+            return '#22c55e';
+        }
+
+        function getRiskClass(nivel) {
+            return 'risk-' + nivel.toLowerCase();
+        }
+
+        // Estilo para hexágonos
+        function hexStyle(feature) {
+            return {
+                fillColor: getColor(feature.properties.probabilidad),
+                weight: 1,
+                opacity: 1,
+                color: '#374151',
+                fillOpacity: 0.7
+            };
+        }
+
+        // Estilo para el contorno de la reserva
+        function reservaStyle(feature) {
+            return {
+                fillColor: 'transparent',
+                weight: 2,
+                opacity: 1,
+                color: '#059669',
+                dashArray: '5, 5',
+                fillOpacity: 0
+            };
+        }
+
+        let hexLayer = null;
+
+        function highlightFeature(e) {
+            e.target.setStyle({ weight: 2, color: '#0f172a', fillOpacity: 0.9 });
+            e.target.bringToFront();
+        }
+
+        function resetHighlight(e) {
+            if (hexLayer) hexLayer.resetStyle(e.target);
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: function(e) {
+                    showHexInfo(feature.properties);
+                }
+            });
+        }
+
+        function showHexInfo(props) {
+            document.getElementById('sidebar-intro').style.display = 'none';
+            document.getElementById('hex-info').classList.add('active');
+
+            document.getElementById('hex-risk').textContent = props.nivel_riesgo;
+            document.getElementById('hex-risk').className = 'hex-risk-badge ' + getRiskClass(props.nivel_riesgo);
+            document.getElementById('hex-prob-value').textContent = props.probabilidad.toFixed(1);
+            document.getElementById('hex-temp').textContent = props.temp_aire.toFixed(1);
+            document.getElementById('hex-wind').textContent = props.viento_kmh.toFixed(1);
+            document.getElementById('hex-rain').textContent = props.precip_7d.toFixed(1);
+            document.getElementById('hex-slope').textContent = props.pendiente;
+            document.getElementById('hex-explanation').textContent = generateExplanation(props);
+        }
+
+        // Cargar GeoJSON de la reserva
+        fetch('Reserva_de_Biosfera_Andino_Norpatagonica.geojson')
+            .then(response => response.json())
+            .then(reservaData => {
+                // Mostrar contorno de la reserva
+                const reservaLayer = L.geoJSON(reservaData, {
+                    style: reservaStyle
+                }).addTo(map);
+
+                // Obtener bounds y coordenadas del MultiPolygon
+                const bounds = reservaLayer.getBounds();
+                const multiPolygon = reservaData.features[0].geometry.coordinates;
+
+                // Generar hexágonos dentro de la reserva
+                const hexData = generateHexGridInBounds(bounds, multiPolygon);
+
+                // Mostrar hexágonos
+                hexLayer = L.geoJSON(hexData, {
+                    style: hexStyle,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+
+                // Ajustar vista solo a los hexágonos (no a toda la reserva)
+                if (hexData.features.length > 0) {
+                    const hexBounds = hexLayer.getBounds();
+                    map.fitBounds(hexBounds, { padding: [10, 10] });
+                }
+            })
+            .catch(error => {
+                console.error('Error cargando GeoJSON:', error);
+            });
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
     </script>
