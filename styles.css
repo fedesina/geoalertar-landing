@@ -675,14 +675,11 @@ a:hover { text-decoration: underline; }
 .trust-logos img {
     height: 40px;
     width: auto;
-    opacity: 0.7;
-    filter: grayscale(100%);
     transition: all 0.3s ease;
 }
 
 .trust-logos img:hover {
-    opacity: 1;
-    filter: grayscale(0%);
+    transform: scale(1.1);
 }
 
 /* ===== RESPONSIVE ===== */
