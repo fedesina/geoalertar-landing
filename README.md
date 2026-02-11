@@ -1,67 +1,50 @@
-# 🛰️ GeoAlertAR - Landing Page
+# 🌲🔥 GeoAlertAR
+> **Sistema de Alerta Temprana de Incendios Forestales basado en Inteligencia Satelital.**
 
-Landing page institucional del **Sistema Nacional de Alerta Temprana de Incendios Forestales**.
+[![NASA Space Apps](https://img.shields.io/badge/NASA_Space_Apps-Best_Mission_Concept_2025-0B3D91?style=for-the-badge&logo=nasa)](https://www.spaceappschallenge.org/)
+[![Status](https://img.shields.io/badge/Status-Production-success?style=for-the-badge)](https://www.geoalertar.com.ar)
+[![Lang](https://img.shields.io/badge/Lang-ES_|_EN-blue?style=for-the-badge)](#)
 
-🔗 **Ver landing:** [geoalertar.com.ar](https://geoalertar.com.ar)  
-🔗 **Ver dashboard:** [geoalertar.com.ar/dashboard](https://geoalertar.com.ar/dashboard)
+## 🚀 Sobre el Proyecto
+
+**GeoAlertAR** es una plataforma tecnológica diseñada para transformar la gestión de incendios forestales de reactiva a preventiva. Utilizando datos satelitales (MODIS, Landsat, Sentinel) y modelos predictivos de Machine Learning, el sistema permite identificar zonas de riesgo extremo hasta **7 días antes** de que ocurra la ignición.
+
+### 🌟 Funcionalidades Clave
+
+* **🌐 Internacionalización Completa (i18n):** Soporte nativo y dinámico para Español e Inglés, con persistencia de preferencia de usuario.
+* **🗺️ Mapa Interactivo de Riesgo:** Visualización geoespacial mediante grillas hexagonales que analizan variables críticas (humedad de combustible vivo, viento, temperatura).
+* **📱 Diseño Responsive:** Interfaz adaptada a dispositivos móviles para uso en terreno por brigadistas.
+* **⚡ Arquitectura Optimizada:** Código refactorizado y modular para máximo rendimiento y mantenibilidad.
 
 ---
 
 ## 🏆 Reconocimientos
 
-| Evento | Premio | Año |
-|--------|--------|-----|
-| NASA Space Apps Challenge | 🚀 Galactic Problem Solver | 2025 |
-| NASA Space Apps Challenge | 🏆 Best Mission Concept | 2025 |
+| Premio | Categoría | Año | Entidad |
+| :--- | :--- | :--- | :--- |
+| **NASA Space Apps Challenge** | 🥇 Best Mission Concept | 2025 | NASA / CONAE |
 
 ---
 
-## 🔥 ¿Qué es GeoAlertAR?
+## 🛠️ Tecnologías Utilizadas
 
-GeoAlertAR es una plataforma argentina que:
+El proyecto está construido sobre un stack moderno y ligero, sin dependencias pesadas:
 
-- **Predice** el riesgo de incendios forestales usando 6 fuentes satelitales
-- **Detecta** focos activos en tiempo real (CONAE + NASA FIRMS)
-- **Valida** automáticamente sus predicciones cuando coinciden con incendios reales
-
-### Diferenciador único mundial
-
-Único sistema de predicción de incendios que integra datos del satélite argentino **SAOCOM** (radar L-Band) para medir humedad real del suelo.
+* **Core:** HTML5 Semántico, CSS3 (Variables & Flexbox/Grid), Vanilla JavaScript (ES6+).
+* **Mapeo:** [Leaflet.js](https://leafletjs.com/) para renderizado de mapas y capas geoespaciales.
+* **Estilos:** [FontAwesome](https://fontawesome.com/) (Iconografía) y Google Fonts (Tipografía IBM Plex Sans).
+* **Despliegue:** GitHub Pages.
 
 ---
 
-## 📁 Estructura del repositorio
+## 📂 Estructura del Repositorio
 
-```
+La arquitectura del proyecto ha sido refactorizada para separar responsabilidades:
+
+```text
 geoalertar-landing/
-├── index.html          # Landing page principal
-├── img/                # Imágenes y logos
-│   └── logo.png
-├── CNAME               # Configuración de dominio personalizado
-└── README.md
-```
-
----
-
-## 🚀 Deploy
-
-Esta landing está hosteada con **GitHub Pages**.
-
-Para hacer cambios:
-1. Editá `index.html`
-2. Commit y push a `main`
-3. GitHub Pages actualiza automáticamente en ~2 minutos
-
----
-
-## 📧 Contacto
-
-**Federico Nicolás Sinato**  
-📧 geoalertar1@gmail.com  
-🇦🇷 Argentina
-
----
-
-## 📄 Licencia
-
-© 2025 GeoAlertAR. Todos los derechos reservados.
+├── index.html       # Estructura semántica y metadatos
+├── styles.css       # Estilos globales, diseño responsivo y animaciones
+├── script.js        # Lógica de negocio, control del mapa y diccionario de traducciones
+├── img/             # Assets gráficos optimizados (Logos, fondos, diagramas)
+└── README.md        # Documentación oficial
