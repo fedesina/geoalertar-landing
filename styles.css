@@ -70,6 +70,8 @@ a:hover { text-decoration: underline; }
     font-weight: 700;
     color: var(--primary-900);
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 .logo span { color: #3b82f6; }
 
@@ -689,6 +691,17 @@ a:hover { text-decoration: underline; }
     .crisis-grid, .story-content, .contact-grid { grid-template-columns: 1fr; }
     .solution-points, .apps-grid { grid-template-columns: 1fr 1fr; }
     .awards-row { flex-direction: column; }
+
+    .map-badge {
+        top: 12px;
+        right: 12px;
+        font-size: 0.75rem;
+        padding: 8px 12px;
+    }
+
+    .map-badge-icon {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -780,6 +793,7 @@ a:hover { text-decoration: underline; }
 }
 
 .demo-wrapper {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 340px;
     gap: 24px;
@@ -788,6 +802,55 @@ a:hover { text-decoration: underline; }
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid var(--neutral-200);
+}
+
+/* Badge flotante interactivo */
+.map-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(96, 165, 250, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: pulseGlow 2s ease-in-out infinite;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.map-badge-icon {
+    font-size: 1.2rem;
+    animation: pointDown 1.5s ease-in-out infinite;
+}
+
+.map-badge.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        border-color: rgba(96, 165, 250, 0.5);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        border-color: rgba(96, 165, 250, 0.9);
+        box-shadow: 0 4px 20px rgba(96, 165, 250, 0.4);
+    }
+}
+
+@keyframes pointDown {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(4px); }
 }
 
 #map {
@@ -818,14 +881,33 @@ a:hover { text-decoration: underline; }
     line-height: 1.6;
 }
 
+/* CTA llamativo en sidebar */
+.demo-cta {
+    display: block;
+    margin-top: 12px;
+    color: #60a5fa;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Cursor pointer en hexágonos */
+.leaflet-interactive {
+    cursor: pointer !important;
+}
+
 .hex-info {
     display: none;
     flex-direction: column;
     flex: 1;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .hex-info.active {
     display: flex;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .hex-info-header {

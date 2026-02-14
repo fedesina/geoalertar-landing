@@ -30,7 +30,8 @@ const translations = {
         demo_title: "Tablero de Comando Táctico",
         demo_subtitle: "Vista previa de la interfaz del sistema. Los datos mostrados son ilustrativos para demostrar el funcionamiento.",
         demo_sidebar_title: "Análisis de zona",
-        demo_sidebar_intro: "El sistema cruza el riesgo climático con la ubicación de infraestructura crítica: escuelas, líneas eléctricas y cuarteles de bomberos. Seleccioná un hexágono para ver el análisis.",
+        demo_sidebar_intro: 'El sistema cruza el riesgo climático con la ubicación de infraestructura crítica: <strong>escuelas, líneas eléctricas y cuarteles de bomberos</strong>. <span class="demo-cta">👉 Hacé click en un hexágono para ver el análisis completo</span>',
+        map_badge_text: "Hacé click en cualquier hexágono",
         demo_explanation_title: "¿Por qué este nivel?",
         demo_explanation_loading: "Cargando análisis...",
         demo_label_temp: "Temperatura",
@@ -163,7 +164,8 @@ const translations = {
         demo_title: "Tactical Command Dashboard",
         demo_subtitle: "System interface preview. Data shown is illustrative to demonstrate functionality.",
         demo_sidebar_title: "Zone analysis",
-        demo_sidebar_intro: "The system cross-references climate risk with critical infrastructure locations: schools, power lines, and fire stations. Select a hexagon to view the analysis.",
+        demo_sidebar_intro: 'The system cross-references climate risk with critical infrastructure locations: <strong>schools, power lines, and fire stations</strong>. <span class="demo-cta">👉 Click on a hexagon to view the full analysis</span>',
+        map_badge_text: "Click on any hexagon",
         demo_explanation_title: "Why this level?",
         demo_explanation_loading: "Loading analysis...",
         demo_label_temp: "Temperature",
@@ -520,6 +522,14 @@ function showHexInfo(props) {
     lastSelectedHexProps = props;
     document.getElementById('sidebar-intro').style.display = 'none';
     document.getElementById('hex-info').classList.add('active');
+
+    // Ocultar badge después del primer click
+    const badge = document.getElementById('map-badge');
+    if (badge && !badge.classList.contains('fade-out')) {
+        badge.classList.add('fade-out');
+        // Eliminar del DOM después de la animación
+        setTimeout(() => badge.remove(), 300);
+    }
 
     const riskNameMap = { 'EXTREMO': translations[currentLang].risk_extreme, 'ALTO': translations[currentLang].risk_high, 'MODERADO': translations[currentLang].risk_moderate, 'BAJO': translations[currentLang].risk_low };
     document.getElementById('hex-risk').textContent = riskNameMap[props.nivel_riesgo] || props.nivel_riesgo;
