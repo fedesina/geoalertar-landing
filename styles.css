@@ -240,10 +240,25 @@ a:hover { text-decoration: underline; }
     color: var(--neutral-400);
 }
 
+.crisis-images {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: -600px;        /* negativo = sube, positivo = baja. Cambiá este número */
+}
+
+.crisis-images img {
+    width: 100%;
+    height: 250px;            /* alto de cada foto. Cambiá este número */
+    border-radius: 4px;
+    object-fit: cover;
+}
+
 .source-note {
     font-size: 0.8rem;
     color: var(--neutral-500);
-    margin-top: 24px;
+    margin-top: -24px;
     padding-top: 16px;
     border-top: 1px solid rgba(255,255,255,0.1);
 }
@@ -689,6 +704,7 @@ a:hover { text-decoration: underline; }
     .hero h1 { font-size: 2rem; }
     .hero-stats { flex-direction: column; gap: 24px; }
     .crisis-grid, .story-content, .contact-grid { grid-template-columns: 1fr; }
+    .crisis-images { grid-column: 1; }
     .solution-points, .apps-grid { grid-template-columns: 1fr 1fr; }
     .awards-row { flex-direction: column; }
 
