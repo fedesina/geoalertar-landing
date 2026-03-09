@@ -5,18 +5,20 @@ let lastSelectedHexProps = null;
 const translations = {
     es: {
         // Header
+        header_login: "Acceder",
         header_cta: "Contactar",
         // Hero
         hero_badge: "Validación operativa exitosa durante la Crisis Patagonia 2026",
         hero_title: "Inteligencia Territorial Predictiva",
-        hero_subtitle: "Sabemos dónde está el riesgo antes de que suene la alarma. El primer sistema de gestión de incendios de Argentina que integra clima, satélites y vulnerabilidad social.",
+        hero_subtitle: "Analizamos clima, terreno y vegetación en 13.231 hexágonos con modelos regionales de machine learning para darte la información preventiva que necesitás antes de que sea tarde.",
         hero_cta: "Ver demo interactiva",
-        hero_stat1_value: "Argentina",
-        hero_stat1_label: "Cobertura",
-        hero_stat2_value: "Predictivo",
-        hero_stat2_label: "No solo detecta",
-        hero_stat3_value: "Validado",
-        hero_stat3_label: "Con datos reales",
+        hero_cta_login: "Acceder al sistema",
+        hero_stat1_value: "13,231",
+        hero_stat1_label: "Hexágonos monitoreados",
+        hero_stat2_value: "24-72hs",
+        hero_stat2_label: "Anticipación al fuego",
+        hero_stat3_value: "96%",
+        hero_stat3_label: "Precisión del modelo",
         // Trust
         trust_label: "Validado con datos de",
         // Data
@@ -139,18 +141,20 @@ const translations = {
     },
     en: {
         // Header
+        header_login: "Login",
         header_cta: "Contact",
         // Hero
         hero_badge: "Successful operational validation during Patagonia Crisis 2026",
         hero_title: "Predictive Territorial Intelligence",
-        hero_subtitle: "We know where risk is before the alarm sounds. Argentina's first wildfire management system integrating climate, satellites, and social vulnerability.",
+        hero_subtitle: "We analyze climate, terrain and vegetation across 13,231 hexagons with regional machine learning models to give you the preventive intelligence you need before it's too late.",
         hero_cta: "View interactive demo",
-        hero_stat1_value: "Argentina",
-        hero_stat1_label: "Coverage",
-        hero_stat2_value: "Predictive",
-        hero_stat2_label: "Not just detection",
-        hero_stat3_value: "Validated",
-        hero_stat3_label: "With real data",
+        hero_cta_login: "Access system",
+        hero_stat1_value: "13,231",
+        hero_stat1_label: "Hexagons monitored",
+        hero_stat2_value: "24-72hrs",
+        hero_stat2_label: "Advance warning",
+        hero_stat3_value: "96%",
+        hero_stat3_label: "Model accuracy",
         // Trust
         trust_label: "Validated with data from",
         // Data

@@ -38,6 +38,10 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
+    <!-- ===== FAVICON (icono pestaña navegador) =====
+         Archivo: img/Geoar3.png (solo escudo, se ve chiquito en la pestaña)
+         ================================================= -->
+    <link rel="icon" href="img/Geoar3.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -45,38 +49,46 @@
     <!-- HEADER -->
     <header class="header">
         <div class="header-content">
-            <a href="#" class="logo">Geoalert<span>AR</span></a>
+            <!-- ===== LOGO HEADER =====
+                 Archivo: img/Geoar2.png (logo horizontal con texto)
+                 Modificar: height:40px → subir número = más grande, bajar = más chico
+                 ========================= -->
+            <a href="#" class="logo"><img src="img/Geoar2.png" alt="GeoAlertAR" style="height: 200px;"></a>
             <div class="lang-toggle">
                 <button class="lang-btn active" data-lang="es">ES</button>
                 <span class="lang-divider">|</span>
                 <button class="lang-btn" data-lang="en">EN</button>
             </div>
-            <a href="mailto:info@geoalertar.com.ar" class="header-btn" data-i18n="header_cta">Contactar</a>
+            <a href="https://appgeoalertar.com.ar" class="header-btn header-btn-outline" data-i18n="header_login">Acceder</a>
+            <a href="#contacto" class="header-btn" data-i18n="header_cta">Contactar</a>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <div class="hero-badge" data-i18n="hero_badge">Validación operativa exitosa durante la Crisis Patagonia 2026</div>
+
             <h1 data-i18n="hero_title">Inteligencia Territorial Predictiva</h1>
             <p class="hero-subtitle" data-i18n="hero_subtitle">
-                Sabemos dónde está el riesgo antes de que suene la alarma. El primer sistema de gestión de incendios de Argentina que integra clima, satélites y vulnerabilidad social.
+                Analizamos clima, terreno y vegetación en 13.231 hexágonos con modelos regionales de machine learning para darte la información preventiva que necesitás antes de que sea tarde.
             </p>
-            <a href="#demo" class="hero-cta" data-i18n="hero_cta">Ver demo interactiva</a>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="#demo" class="hero-cta" data-i18n="hero_cta">Ver demo interactiva</a>
+                <a href="https://appgeoalertar.com.ar" class="hero-cta" style="background:transparent;border:2px solid rgba(255,255,255,0.6);" data-i18n="hero_cta_login">Acceder al sistema</a>
+            </div>
 
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="hero-stat-value" data-i18n="hero_stat1_value">Argentina</div>
-                    <div class="hero-stat-label" data-i18n="hero_stat1_label">Cobertura</div>
+                    <div class="hero-stat-value" data-i18n="hero_stat1_value">13,231</div>
+                    <div class="hero-stat-label" data-i18n="hero_stat1_label">Hexágonos monitoreados</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value" data-i18n="hero_stat2_value">Predictivo</div>
-                    <div class="hero-stat-label" data-i18n="hero_stat2_label">No solo detecta</div>
+                    <div class="hero-stat-value" data-i18n="hero_stat2_value">24-72hs</div>
+                    <div class="hero-stat-label" data-i18n="hero_stat2_label">Anticipación al fuego</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value" data-i18n="hero_stat3_value">Validado</div>
-                    <div class="hero-stat-label" data-i18n="hero_stat3_label">Con datos reales</div>
+                    <div class="hero-stat-value" data-i18n="hero_stat3_value">96%</div>
+                    <div class="hero-stat-label" data-i18n="hero_stat3_label">Precisión del modelo</div>
                 </div>
             </div>
         </div>
@@ -86,6 +98,10 @@
     <section class="trust-section">
         <div class="container">
             <div class="trust-label" data-i18n="trust_label">Validado con datos de</div>
+            <!-- ===== LOGOS DE CONFIANZA =====
+                 Tamaño controlado en styles.css clase .trust-logos img
+                 Para cambiar un logo: reemplazar el archivo en img/ con el mismo nombre
+                 ================================== -->
             <div class="trust-logos">
                 <img src="img/nasa-1.svg" alt="NASA">
                 <img src="img/images.png" alt="CONAE">
@@ -488,8 +504,14 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container" data-i18n="footer_text">
-            © 2026 GeoAlertAR — Desarrollado en Argentina
+        <div class="container" style="display:flex;align-items:center;justify-content:center;gap:12px;">
+            <!-- ===== LOGO FOOTER =====
+                 Archivo: img/Geoar3.png (solo escudo)
+                 Modificar: height para tamaño, opacity para transparencia (0.0 a 1.0)
+                 ========================= -->
+            <!-- ===== LOGO FOOTER: height:200px para cambiar tamaño ===== -->
+            <img src="img/Geoar3.png" alt="GeoAlertAR" style="height:200px;opacity:0.8;">
+            <span data-i18n="footer_text">© 2026 GeoAlertAR — Desarrollado en Argentina</span>
         </div>
     </footer>
 
