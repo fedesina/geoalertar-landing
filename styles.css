@@ -706,12 +706,24 @@ a:hover { text-decoration: underline; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
+    .header-content { flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .header-content .logo img { height: 80px !important; }
+    .header-btn { font-size: 0.75rem; padding: 6px 12px; }
+    .lang-toggle { order: -1; width: 100%; text-align: center; }
+
+    .hero h1 { font-size: 1.8rem; }
+    .hero-subtitle { font-size: 0.95rem !important; }
     .hero-stats { flex-direction: column; gap: 24px; }
+    .hero-stat-value { font-size: 1.8rem; }
+
     .crisis-grid, .story-content, .contact-grid { grid-template-columns: 1fr; }
     .crisis-images { grid-column: 1; }
+    .comparison-grid { grid-template-columns: 1fr; }
     .solution-points, .apps-grid { grid-template-columns: 1fr 1fr; }
     .awards-row { flex-direction: column; }
+    .team-cards { flex-direction: column; }
+
+    .data-header h2, .section h2 { font-size: 1.5rem; }
 
     .map-badge {
         top: 12px;
@@ -723,10 +735,19 @@ a:hover { text-decoration: underline; }
     .map-badge-icon {
         font-size: 1rem;
     }
+
+    .tech-box { padding: 20px; }
+    .comparison-card { padding: 20px; }
+
+    .footer .container { flex-direction: column; text-align: center; }
+    .footer .container img { height: 80px !important; }
 }
 
 @media (max-width: 480px) {
+    .header-content .logo img { height: 60px !important; }
+    .hero h1 { font-size: 1.4rem; }
     .solution-points, .apps-grid, .crisis-stats { grid-template-columns: 1fr; }
+    .crisis-stat { padding: 16px; }
 }
 
 /* ===== DATA SECTION ===== */
