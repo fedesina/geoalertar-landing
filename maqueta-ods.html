@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoAlertAR · Contribución a los Objetivos de Desarrollo Sostenible</title>
+
+<!--
+  FUENTES OFICIALES SEGÚN GUÍA DE COMUNICACIÓN ONU PARA USO DE ÍCONOS ODS
+  ─────────────────────────────────────────────────────────────────────────
+  Habilitadas por Camila (mail solicitud ONU):
+    · Oswald Medium (500)   → eyebrow / labels institucionales
+    · Oswald SemiBold (600) → títulos
+    · Roboto Bold (700)     → texto destacado / strong
+  Se incluye Roboto Regular (400) para el cuerpo de texto general,
+  acompañando a las anteriores conforme práctica estándar de la guía ONU.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary-900: #0f172a;
+    --neutral-700: #374151;
+    --neutral-600: #4b5563;
+    --neutral-500: #6b7280;
+    --neutral-200: #e5e7eb;
+    --neutral-50:  #f9fafb;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    /* Body en Roboto Regular según guía ONU */
+    font-family: 'Roboto', -apple-system, sans-serif;
+    font-weight: 400;
+    background: var(--white);
+    color: var(--neutral-700);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* Títulos en Oswald SemiBold (peso 600) */
+  h1, h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: var(--primary-900);
+    line-height: 1.25;
+    letter-spacing: 0.3px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  /* Cabecera con logo */
+  .marca-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--neutral-200);
+    margin-bottom: 56px;
+  }
+
+  .marca-cabecera img {
+    height: 40px;
+    width: auto;
+  }
+
+  /* Eyebrow institucional en Oswald Medium */
+  .marca-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 0.78rem;
+    color: var(--neutral-500);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  /* Título principal — Oswald SemiBold */
+  h1 {
+    font-size: 2.4rem;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Descripción en Roboto Regular */
+  .descripcion {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.08rem;
+    color: var(--neutral-600);
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+
+  /* "strong" en Roboto Bold según guía ONU */
+  .descripcion strong {
+    font-weight: 700;
+    color: var(--primary-900);
+  }
+
+  /* Grilla con los 5 íconos ODS */
+  .ods-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    margin: 56px 0;
+  }
+
+  .ods-item img {
+    width: 100%;
+    height: auto;
+    max-width: 170px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Bloque rueda ODS — uso decorativo / secundario */
+  .rueda-bloque {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 36px;
+    background: var(--neutral-50);
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-900);
+    margin-top: 16px;
+  }
+
+  .rueda-bloque img {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  /* Subtítulo bloque rueda — Oswald SemiBold */
+  .rueda-bloque h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Texto bloque rueda — Roboto Regular */
+  .rueda-bloque p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.97rem;
+    color: var(--neutral-600);
+    line-height: 1.65;
+  }
+
+  /* Aviso legal obligatorio para solicitud ONU */
+  .aviso-legal {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--neutral-200);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.82rem;
+    color: var(--neutral-500);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container { padding: 48px 20px; }
+    h1 { font-size: 1.7rem; }
+    .ods-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .rueda-bloque {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Cabecera institucional con logo de la landing -->
+  <div class="marca-cabecera">
+    <img src="img/Geoar3.png" alt="GeoAlertAR">
+    <div class="marca-eyebrow">GeoAlertAR · Inteligencia Territorial</div>
+  </div>
+
+  <!-- Título principal -->
+  <h1>Contribuyendo a los Objetivos de Desarrollo Sostenible</h1>
+
+  <!-- Bajadas -->
+  <p class="descripcion">
+    GeoAlertAR desarrolla herramientas de inteligencia territorial para la
+    <strong>prevención de incendios forestales</strong>, la
+    <strong>protección de ecosistemas</strong> y la <strong>gestión del riesgo</strong>.
+  </p>
+
+  <p class="descripcion">
+    Nuestro trabajo se alinea con los principios de la Agenda 2030 para el Desarrollo
+    Sostenible, contribuyendo especialmente a los siguientes Objetivos:
+  </p>
+
+  <!-- 5 íconos ODS en fila (nombres reales de los archivos descargados) -->
+  <div class="ods-grid">
+    <div class="ods-item">
+      <img src="img/ods/industry innovation and infraestrucutre.png"
+           alt="ODS 9 — Industria, Innovación e Infraestructura">
+    </div>
+    <div class="ods-item">
+      <img src="img/ods/sustainable cities and communities.png"
+           alt="ODS 11 — Ciudades y Comunidades Sostenibles">
+    </div>
+    <div class="ods-item">
+      <img src="img/ods/climate action.png"
+           alt="ODS 13 — Acción por el Clima">
+    </div>
+    <div class="ods-item">
+      <img src="img/ods/life on land.png"
+           alt="ODS 15 — Vida de Ecosistemas Terrestres">
+    </div>
+    <div class="ods-item">
+      <img src="img/ods/partnerships for the goals.png"
+           alt="ODS 17 — Alianzas para Lograr los Objetivos">
+    </div>
+  </div>
+
+  <!-- Rueda ODS como uso secundario / decorativo -->
+  <div class="rueda-bloque">
+    <img src="img/ods/objetivos de desallo sostenible.png"
+         alt="Rueda de los Objetivos de Desarrollo Sostenible">
+    <div>
+      <h3>Compromiso con la Agenda 2030</h3>
+      <p>
+        Nuestro sistema de predicción y prevención de incendios aporta inteligencia
+        territorial a organismos públicos, equipos de defensa civil y empresas
+        forestales, contribuyendo a ecosistemas más resilientes y comunidades mejor
+        preparadas frente al riesgo de incendios.
+      </p>
+    </div>
+  </div>
+
+  <!-- Aviso legal — clave para que ONU apruebe la solicitud -->
+  <div class="aviso-legal">
+    El uso de los íconos y la rueda de los Objetivos de Desarrollo Sostenible se
+    realiza con fines informativos para comunicar las áreas en las que GeoAlertAR
+    contribuye en el marco de la Agenda 2030. GeoAlertAR no está certificado, avalado
+    ni respaldado por las Naciones Unidas u organismos asociados.
+  </div>
+
+</div>
+
+</body>
+</html>
