@@ -7,16 +7,16 @@
     <title>GeoalertAR | Sistema de alerta temprana para incendios forestales</title>
 
     <!-- Meta básicas SEO -->
-    <meta name="description" content="Plataforma de inteligencia satelital para la predicción y gestión preventiva de incendios forestales.">
+    <meta name="description" content="Plataforma de inteligencia satelital para el análisis de riesgo y la gestión preventiva de incendios forestales.">
     <meta name="author" content="GeoAlertAR">
-    <meta name="keywords" content="incendios forestales, predicción, inteligencia satelital, alerta temprana, Argentina, NASA Space Apps">
+    <meta name="keywords" content="incendios forestales, riesgo de incendios, inteligencia satelital, alerta temprana, Argentina, NASA Space Apps">
 
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:title" content="GeoAlertAR | Sistema de Alerta Temprana de Incendios">
-    <meta property="og:description" content="Plataforma de inteligencia satelital para la predicción y gestión preventiva de incendios forestales.">
+    <meta property="og:description" content="Plataforma de inteligencia satelital para el análisis de riesgo y la gestión preventiva de incendios forestales.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.geoalertar.com.ar">
-    <meta property="og:image" content="https://www.geoalertar.com.ar/img/geoalertar1.png">
+    <meta property="og:image" content="https://www.geoalertar.com.ar/img/Geoar1.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="es_AR">
@@ -25,8 +25,8 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GeoAlertAR | Prevención de Incendios">
-    <meta name="twitter:description" content="Inteligencia satelital para la predicción de incendios.">
-    <meta name="twitter:image" content="https://www.geoalertar.com.ar/img/geoalertar1.png">
+    <meta name="twitter:description" content="Inteligencia satelital para el análisis de riesgo de incendios.">
+    <meta name="twitter:image" content="https://www.geoalertar.com.ar/img/Geoar1.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,13 +54,19 @@
                  Modificar: height:40px → subir número = más grande, bajar = más chico
                  ========================= -->
             <a href="#" class="logo"><img src="img/Geoar2.png" alt="GeoAlertAR" style="height: 200px;"></a>
-            <div class="lang-toggle">
-                <button class="lang-btn active" data-lang="es">ES</button>
-                <span class="lang-divider">|</span>
-                <button class="lang-btn" data-lang="en">EN</button>
+            <div class="header-right">
+                <nav class="header-nav">
+                    <a href="#demo" class="header-btn header-btn-outline" data-i18n="nav_demo">Demo</a>
+                    <a href="#equipo" class="header-btn header-btn-outline" data-i18n="nav_equipo">Quiénes somos</a>
+                </nav>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" data-lang="es">ES</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <a href="https://appgeoalertar.com.ar" class="header-btn header-btn-outline" data-i18n="header_login">Acceder</a>
+                <a href="#contacto" class="header-btn" data-i18n="header_cta">Contactar</a>
             </div>
-            <a href="https://appgeoalertar.com.ar" class="header-btn header-btn-outline" data-i18n="header_login">Acceder</a>
-            <a href="#contacto" class="header-btn" data-i18n="header_cta">Contactar</a>
         </div>
     </header>
 
@@ -68,29 +74,13 @@
     <section class="hero">
         <div class="container">
 
-            <h1 data-i18n="hero_title">Inteligencia Territorial Predictiva</h1>
+            <h1 data-i18n="hero_title">Inteligencia Territorial de Riesgo de Incendios Forestales</h1>
             <p class="hero-subtitle" data-i18n="hero_subtitle">
                 Te decimos dónde van a darse las condiciones de riesgo de incendio con hasta 7 días de anticipación. Cubrimos todo el territorio argentino, todos los días. Para que actúes antes de que sea tarde.
             </p>
-            <p style="font-size:0.95rem;opacity:0.7;margin-top:8px;" data-i18n="hero_validated">Sistema operativo y validado en emergencias reales.</p>
+            <p style="font-size:0.95rem;color:#e5e7eb;text-shadow:0 1px 4px rgba(0,0,0,0.6);margin-top:8px;margin-bottom:28px;" data-i18n="hero_validated">Sistema operativo y validado en emergencias reales.</p>
             <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                <a href="#demo" class="hero-cta" data-i18n="hero_cta">Ver demo interactiva</a>
-                <a href="https://appgeoalertar.com.ar" class="hero-cta" style="background:transparent;border:2px solid rgba(255,255,255,0.6);" data-i18n="hero_cta_login">Acceder al sistema</a>
-            </div>
-
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-value" data-i18n="hero_stat1_value">13,231</div>
-                    <div class="hero-stat-label" data-i18n="hero_stat1_label">Zonas monitoreadas en Argentina</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value" data-i18n="hero_stat2_value">7 días</div>
-                    <div class="hero-stat-label" data-i18n="hero_stat2_label">Anticipación al riesgo</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value" data-i18n="hero_stat3_value">96%</div>
-                    <div class="hero-stat-label" data-i18n="hero_stat3_label">Precisión del modelo</div>
-                </div>
+                <a href="https://appgeoalertar.com.ar" class="hero-cta" data-i18n="hero_cta_login">Acceder al sistema</a>
             </div>
         </div>
     </section>
@@ -113,12 +103,57 @@
         </div>
     </section>
 
+    <!-- CRISIS - DATOS REALES -->
+    <section class="section section-dark" id="crisis">
+        <div class="container">
+            <div class="crisis-grid">
+                <div class="crisis-text">
+                    <h2 data-i18n="crisis_title">El problema no es el clima, es la imprevisibilidad</h2>
+                    <p style="font-size: 1.1rem; font-weight: 500;" data-i18n="crisis_intro">
+                        Gran parte del territorio argentino tiene vegetación seca lista para arder. Nuestro trabajo no es decirte que está seco —eso ya lo sabés— es decirte dónde la vulnerabilidad humana va a encender la mecha.
+                    </p>
+
+                    <ul class="bullet-list">
+                        <li data-i18n-html="crisis_li1"><strong>Factor humano:</strong> El 95% de los incendios se originan por actividad humana (intencional o negligencia), según el Servicio Nacional de Manejo del Fuego (SNMF) — una fuente de ignición que, en la práctica, es imposible de anticipar. Por eso lo único que sí se puede anticipar es <em>dónde</em> esa chispa inevitable encontraría condiciones para volverse catástrofe.</li>
+                        <li data-i18n-html="crisis_li2"><strong>Ventana de ignición:</strong> Las condiciones críticas (temperatura, viento, sequía) son estimables con 7 días de anticipación. El problema es saber <em>dónde</em> mirar.</li>
+                        <li data-i18n-html="crisis_li3"><strong>Escala nacional:</strong> Argentina no tiene un ecosistema homogéneo. Lo que funciona en Corrientes no funciona en Chubut.</li>
+                        <li data-i18n-html="crisis_li4"><strong>Pérdida sostenida:</strong> En Argentina se pierden en promedio más de 300.000 hectáreas de bosque nativo por año a causa de incendios, según el Ministerio de Ambiente y Desarrollo Sostenible (MAyDS), 1998–2018.</li>
+                    </ul>
+
+                    <p class="source-note" data-i18n="crisis_source">Fuentes: Servicio Nacional de Manejo del Fuego (SNMF) y MAyDS.</p>
+                </div>
+                <div class="crisis-stats">
+                    <div class="crisis-stat">
+                        <div class="crisis-stat-value">7.6M</div>
+                        <div class="crisis-stat-label" data-i18n="crisis_stat1_label">Hectáreas quemadas en Argentina (2020-2024)</div>
+                    </div>
+                    <div class="crisis-stat">
+                        <div class="crisis-stat-value">230K+</div>
+                        <div class="crisis-stat-label" data-i18n="crisis_stat2_label">Hectáreas en Patagonia (enero 2026, en curso)</div>
+                    </div>
+                    <div class="crisis-stat">
+                        <div class="crisis-stat-value">~1M</div>
+                        <div class="crisis-stat-label" data-i18n="crisis_stat3_label">Hectáreas en Corrientes (2022)</div>
+                    </div>
+                    <div class="crisis-stat">
+                        <div class="crisis-stat-value">95%</div>
+                        <div class="crisis-stat-label" data-i18n="crisis_stat4_label">Causados por actividad humana</div>
+                    </div>
+                </div>
+                <div class="crisis-images">
+                    <img src="img/cerro quemado.jpg" alt="Cerro incendiándose en Patagonia">
+                    <img src="img/cerro humo .png" alt="Vista aérea de incendio forestal">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CAPACIDAD DE DATOS -->
     <section class="data-section">
         <div class="data-container">
             <div class="data-header">
                 <h2 data-i18n="data_title">Capacidad de datos</h2>
-                <p data-i18n="data_subtitle">Nuestro modelo está entrenado con datos históricos verificados de incendios en Argentina y fuentes satelitales globales.</p>
+                <p data-i18n="data_subtitle">El motor de riesgo se basa en el índice FWI, complementado con modelos satelitales que calibran y regionalizan el análisis según cada territorio, entrenados con datos históricos verificados de incendios en Argentina.</p>
             </div>
             <div class="data-grid">
                 <div class="data-card">
@@ -130,12 +165,16 @@
                     <div class="data-card-label" data-i18n="data_card2_label">Años de datos históricos</div>
                 </div>
                 <div class="data-card">
-                    <div class="data-card-value">7</div>
-                    <div class="data-card-label" data-i18n="data_card3_label">Fuentes satelitales integradas</div>
+                    <div class="data-card-value" data-i18n="data_card3_value">7 días</div>
+                    <div class="data-card-label" data-i18n="data_card3_label">Anticipación de riesgo</div>
                 </div>
-                <div class="data-card">
-                    <div class="data-card-value">96%</div>
-                    <div class="data-card-label" data-i18n="data_card4_label">F1-Score del modelo</div>
+                <div class="data-card data-card-text">
+                    <div class="data-card-title" data-i18n="data_card4_title">Fuentes integradas</div>
+                    <div class="data-card-desc" data-i18n="data_card4_desc">Datos satelitales, meteorológicos y territoriales en un solo sistema.</div>
+                </div>
+                <div class="data-card data-card-text">
+                    <div class="data-card-title" data-i18n="data_card5_title">Malla adaptable</div>
+                    <div class="data-card-desc" data-i18n="data_card5_desc">Se ajusta a la escala y necesidad de cada territorio.</div>
                 </div>
             </div>
         </div>
@@ -165,7 +204,7 @@
                     <div class="hex-info" id="hex-info">
                         <div class="hex-info-header">
                             <span class="hex-risk-badge" id="hex-risk">EXTREMO</span>
-                            <div class="hex-prob"><span id="hex-prob-value">98.4</span>% <span data-i18n="demo_risk_word">riesgo</span></div>
+                            <div class="hex-prob">FWI <span id="hex-prob-value">52</span></div>
                         </div>
 
                         <div class="hex-explanation">
@@ -193,43 +232,55 @@
                                 <div class="hex-data-value"><span id="hex-slope">--</span>°</div>
                             </div>
                         </div>
+
+                        <div class="demo-disclaimer">
+                            <span class="demo-disclaimer-badge" data-i18n="demo_disclaimer_badge">DEMOSTRACIÓN SIMPLIFICADA</span>
+                            <p data-i18n="demo_disclaimer_text">Este demo muestra una versión simplificada. El sistema completo hace mucho más:</p>
+                            <button class="demo-accordion-toggle" id="demo-accordion-toggle" onclick="toggleDemoAccordion()">
+                                <span data-i18n="demo_accordion_toggle">Ver funciones completas</span>
+                                <span class="demo-accordion-arrow" id="demo-accordion-arrow">↓</span>
+                            </button>
+                            <div class="demo-accordion-content" id="demo-accordion-content">
+                                <div class="demo-more-list">
+                                    <div class="demo-more-item"><i class="fa-solid fa-gauge-high"></i><span data-i18n="demo_acc1_title">Resumen general del territorio</span></div>
+                                    <div class="demo-more-item"><i class="fa-solid fa-chart-line"></i><span data-i18n="demo_acc2_title">Riesgo y evolución temporal</span></div>
+                                    <div class="demo-more-item"><i class="fa-solid fa-cloud-sun-rain"></i><span data-i18n="demo_acc3_title">Condiciones ambientales</span></div>
+                                    <div class="demo-more-item"><i class="fa-solid fa-tree"></i><span data-i18n="demo_acc4_title">Vegetación y combustible</span></div>
+                                    <div class="demo-more-item"><i class="fa-solid fa-calendar-days"></i><span data-i18n="demo_acc5_title">Pronóstico hasta 7 días</span></div>
+                                    <div class="demo-more-item"><i class="fa-solid fa-layer-group"></i><span data-i18n="demo_acc6_title">Capas de información disponibles</span></div>
+                                    <div class="demo-more-item"><i class="fa-solid fa-people-group"></i><span data-i18n="demo_acc7_title">Contexto socioterritorial</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="demo-legend">
-                        <h4 data-i18n="demo_legend_title">Niveles de riesgo</h4>
+                        <h4 data-i18n="demo_legend_title">Niveles de riesgo (FWI)</h4>
                         <div class="legend-items">
                             <div class="legend-item">
                                 <div class="legend-color" style="background: #dc2626;"></div>
-                                <span data-i18n="demo_legend_extreme">Extremo (>80%)</span>
+                                <span data-i18n="demo_legend_extreme">Extremo (≥46)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #ea580c;"></div>
+                                <span data-i18n="demo_legend_veryhigh">Muy alto (28-45)</span>
                             </div>
                             <div class="legend-item">
                                 <div class="legend-color" style="background: #f97316;"></div>
-                                <span data-i18n="demo_legend_high">Alto (60-80%)</span>
+                                <span data-i18n="demo_legend_high">Alto (15-27)</span>
                             </div>
                             <div class="legend-item">
                                 <div class="legend-color" style="background: #eab308;"></div>
-                                <span data-i18n="demo_legend_moderate">Moderado (40-60%)</span>
+                                <span data-i18n="demo_legend_moderate">Moderado (6-14)</span>
                             </div>
                             <div class="legend-item">
                                 <div class="legend-color" style="background: #22c55e;"></div>
-                                <span data-i18n="demo_legend_low">Bajo (<40%)</span>
+                                <span data-i18n="demo_legend_low">Bajo (<6)</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CASO DE ÉXITO -->
-    <section class="section section-dark" id="caso-exito">
-        <div class="container" style="text-align:center;">
-            <h2 data-i18n="case_title">Precisión comprobada en el terreno</h2>
-            <p style="max-width:700px;margin:0 auto 32px;font-size:1.05rem;" data-i18n="case_subtitle">
-                Durante la crisis de Patagonia en marzo de 2026, el sistema identificó las zonas de riesgo extremo días antes de que se confirmaran los primeros focos.
-            </p>
-            <img src="img/caso_patagonia_2026.jpg" alt="Caso de éxito Patagonia 2026 - Predicción vs Realidad" style="width:100%;max-width:900px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-            <p style="margin-top:20px;font-size:0.9rem;opacity:0.6;" data-i18n="case_footer">Focos de calor confirmados por satélites internacionales ocurrieron dentro de las zonas predichas por el sistema.</p>
         </div>
     </section>
 
@@ -253,8 +304,8 @@
 
             <div class="solution-points">
                 <div class="solution-point">
-                    <h3 data-i18n="tech_point1_title">Entrenamiento con datos argentinos</h3>
-                    <p data-i18n="tech_point1_desc">Entrenado con más de 200K detecciones históricas reales de Argentina, no datasets globales genéricos.</p>
+                    <h3 data-i18n="tech_point1_title">Calibración y regionalización con datos argentinos</h3>
+                    <p data-i18n="tech_point1_desc">El índice FWI se combina con modelos satelitales calibrados con más de 200K detecciones históricas reales de Argentina —no datasets globales genéricos— para regionalizar el análisis y clasificar automáticamente el tipo de vegetación.</p>
                 </div>
                 <div class="solution-point">
                     <h3 data-i18n="tech_point2_title">Adaptación automática</h3>
@@ -262,54 +313,7 @@
                 </div>
                 <div class="solution-point">
                     <h3 data-i18n="tech_point3_title">Validación diaria</h3>
-                    <p data-i18n="tech_point3_desc">Cada predicción se cruza con focos de calor reales confirmados por satélites internacionales.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CRISIS - DATOS REALES -->
-    <section class="section section-dark" id="crisis">
-        <div class="container">
-            <div class="crisis-grid">
-                <div class="crisis-text">
-                    <h2 data-i18n="crisis_title">El problema no es el clima, es la imprevisibilidad</h2>
-                    <p style="font-size: 1.1rem; font-weight: 500;" data-i18n="crisis_intro">
-                        El 84% del territorio argentino es combustible listo. Nuestro trabajo no es decirte que está seco —eso ya lo sabés— es decirte dónde la vulnerabilidad humana va a encender la mecha.
-                    </p>
-
-                    <ul class="bullet-list">
-                        <li data-i18n-html="crisis_li1"><strong>Factor humano:</strong> El 95% de los incendios son causados por actividad humana (intencional o negligencia). El riesgo real está donde convergen sequía + densidad poblacional.</li>
-                        <li data-i18n-html="crisis_li2"><strong>Ventana de ignición:</strong> Las condiciones críticas (temperatura, viento, sequía) son predecibles con 7 días de anticipación. El problema es saber <em>dónde</em> mirar.</li>
-                        <li data-i18n-html="crisis_li3"><strong>Escala nacional:</strong> Argentina no tiene un ecosistema homogéneo. Lo que funciona en Corrientes no funciona en Chubut.</li>
-                        <li data-i18n-html="crisis_li4"><strong>Crisis Patagonia 2026:</strong> GeoAlertAR identificó las zonas de riesgo extremo 5 días antes del primer foco. El sistema ya está validado operativamente.</li>
-                    </ul>
-
-                    <div class="cta-center">
-                        <a href="mailto:info@geoalertar.com.ar?subject=Implementar%20sistema" class="cta-button" data-i18n="crisis_cta">Implementar sistema</a>
-                    </div>
-                </div>
-                <div class="crisis-stats">
-                    <div class="crisis-stat">
-                        <div class="crisis-stat-value">7.6M</div>
-                        <div class="crisis-stat-label" data-i18n="crisis_stat1_label">Hectáreas quemadas en Argentina (2020-2024)</div>
-                    </div>
-                    <div class="crisis-stat">
-                        <div class="crisis-stat-value">230K+</div>
-                        <div class="crisis-stat-label" data-i18n="crisis_stat2_label">Hectáreas en Patagonia (enero 2026, en curso)</div>
-                    </div>
-                    <div class="crisis-stat">
-                        <div class="crisis-stat-value">~1M</div>
-                        <div class="crisis-stat-label" data-i18n="crisis_stat3_label">Hectáreas en Corrientes (2022)</div>
-                    </div>
-                    <div class="crisis-stat">
-                        <div class="crisis-stat-value">95%</div>
-                        <div class="crisis-stat-label" data-i18n="crisis_stat4_label">Causados por actividad humana</div>
-                    </div>
-                </div>
-                <div class="crisis-images">
-                    <img src="img/cerro quemado.jpg" alt="Cerro incendiándose en Patagonia">
-                    <img src="img/cerro humo .png" alt="Vista aérea de incendio forestal">
+                    <p data-i18n="tech_point3_desc">Cada estimación de riesgo se cruza con focos de calor reales confirmados por satélites internacionales.</p>
                 </div>
             </div>
         </div>
@@ -320,7 +324,7 @@
         <div class="container">
             <h2 data-i18n="comparison_title">El cambio de paradigma</h2>
             <p data-i18n="comparison_intro">
-                La gestión tradicional de incendios opera en modo reactivo. GeoAlertAR transforma la operación hacia un modelo predictivo y preventivo.
+                La gestión tradicional de incendios opera en modo reactivo. GeoAlertAR transforma la operación hacia un modelo de anticipación y prevención.
             </p>
 
             <div class="comparison-grid">
@@ -367,10 +371,18 @@
                     </ul>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="cta-center">
-                <a href="mailto:info@geoalertar.com.ar?subject=Solicitar%20piloto%20institucional" class="cta-button" data-i18n="comparison_cta">Solicitar piloto institucional</a>
-            </div>
+    <!-- CASO DE ÉXITO -->
+    <section class="section section-dark" id="caso-exito">
+        <div class="container" style="text-align:center;">
+            <h2 data-i18n="case_title">Precisión comprobada en el terreno</h2>
+            <p style="max-width:700px;margin:0 auto 32px;font-size:1.05rem;" data-i18n="case_subtitle">
+                Durante la crisis de Patagonia en marzo de 2026, el sistema identificó las zonas de riesgo extremo días antes de que se confirmaran los primeros focos.
+            </p>
+            <img src="img/caso_patagonia_2026.jpg" alt="Caso de éxito Patagonia 2026 - Estimación de riesgo vs Realidad" style="width:100%;max-width:900px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
+            <p style="margin-top:20px;font-size:0.9rem;opacity:0.6;" data-i18n="case_footer">Focos de calor confirmados por satélites internacionales ocurrieron dentro de las zonas de riesgo identificadas por el sistema.</p>
         </div>
     </section>
 
@@ -385,9 +397,6 @@
                     </p>
                     <p data-i18n="team_p2">
                         La respuesta no la encontramos en un paper. La encontramos en el terreno —tras haber sido bombero voluntario y entender que cuando suena la alarma, el fuego ya lleva ventaja.
-                    </p>
-                    <p class="highlight" data-i18n="team_highlight">
-                        Validación operativa exitosa durante la Crisis Patagonia 2026: identificamos zonas de riesgo extremo 5 días antes del primer foco. El sistema ya probó su valor en condiciones reales de emergencia.
                     </p>
                     <p data-i18n="team_p4">
                         Somos Federico y Camila. Él viene del desarrollo y la teledetección. Ella de la geografía ambiental y los sistemas de información geográfica. Juntos construimos algo que creemos puede cambiar cómo Argentina enfrenta el fuego.
@@ -427,19 +436,24 @@
                     <div class="award-item-date" data-i18n="awards_item1_date">Octubre 2025</div>
                 </div>
                 <div class="award-item">
-                    <div class="award-item-org">NASA ARSET</div>
-                    <div class="award-item-title" data-i18n="awards_item2_title">Certificación en Monitoreo de Incendios</div>
-                    <div class="award-item-date" data-i18n="awards_item2_date">Abril 2025</div>
+                    <div class="award-item-org" data-i18n="awards_item4_org">Publicación científica</div>
+                    <div class="award-item-title" data-i18n="awards_item4_title">Paper publicado en EarthArXiv</div>
+                    <div class="award-item-date">2026</div>
                 </div>
                 <div class="award-item">
                     <div class="award-item-org">CONAE</div>
-                    <div class="award-item-title" data-i18n="awards_item3_title">Formación en Teledetección</div>
+                    <div class="award-item-title" data-i18n="awards_item3_title">Formación en Teledetección Óptica</div>
                     <div class="award-item-date">Argentina</div>
                 </div>
                 <div class="award-item">
-                    <div class="award-item-org" data-i18n="awards_item4_org">Publicación científica</div>
-                    <div class="award-item-title" data-i18n="awards_item4_title">Paper publicado con revisión académica</div>
-                    <div class="award-item-date">2026</div>
+                    <div class="award-item-org">NASA ARSET</div>
+                    <div class="award-item-title" data-i18n="awards_item2_title">Advanced NASA Earth Observations and Tools for Active Fire, Smoke, and Post-Fire Monitoring</div>
+                    <div class="award-item-date" data-i18n="awards_item2_date">Abril 2025</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-item-org">IPGH</div>
+                    <div class="award-item-title" data-i18n="awards_item5_title">Taller de Información Geoespacial para la Gestión de Riesgos de Desastres</div>
+                    <div class="award-item-date" data-i18n="awards_item5_date">Argentina</div>
                 </div>
             </div>
         </div>
@@ -482,10 +496,17 @@
                     <div class="app-item-title" data-i18n="apps_item4_title">Bomberos</div>
                     <div class="app-item-desc" data-i18n="apps_item4_desc">Anticipación táctica para pre-posicionar recursos donde el riesgo es inminente.</div>
                 </div>
+                <div class="app-item">
+                    <div class="app-item-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6z"/></svg>
+                    </div>
+                    <div class="app-item-title" data-i18n="apps_item5_title">ONGs y áreas protegidas</div>
+                    <div class="app-item-desc" data-i18n="apps_item5_desc">Monitoreo continuo de reservas y ecosistemas prioritarios para actuar antes de que el fuego los alcance.</div>
+                </div>
             </div>
 
             <div class="cta-center">
-                <a href="#contacto" class="cta-button" data-i18n="apps_cta">Hablar con expertos</a>
+                <a href="mailto:info@geoalertar.com.ar?subject=Solicitar%20piloto" class="cta-button" data-i18n="apps_cta">Solicitar piloto</a>
             </div>
         </div>
     </section>
@@ -508,7 +529,7 @@
                     </div>
                     <div class="contact-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <a href="https://wa.me/5491165122400" target="_blank">+54 9 11 6512-2400</a>
+                        <a href="https://wa.me/5491139213580" target="_blank">+54 9 11 3921-3580</a>
                     </div>
                     <div class="contact-item">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -519,7 +540,23 @@
         </div>
     </section>
 
+
     <!-- FOOTER -->
+    <!-- OBJETIVOS DE DESARROLLO SOSTENIBLE -->
+    <section class="ods-strip">
+        <div class="container">
+            <h2 class="ods-strip-label" data-i18n="ods_label">GeoAlertAR contribuye a los Objetivos de Desarrollo Sostenible de la ONU</h2>
+            <div class="ods-strip-icons">
+                <img src="img/ods/industry innovation and infraestrucutre.png" alt="ODS 9 — Industria, Innovación e Infraestructura">
+                <img src="img/ods/sustainable cities and communities.png" alt="ODS 11 — Ciudades y Comunidades Sostenibles">
+                <img src="img/ods/climate action.png" alt="ODS 13 — Acción por el Clima">
+                <img src="img/ods/life on land.png" alt="ODS 15 — Vida de Ecosistemas Terrestres">
+                <img src="img/ods/partnerships for the goals.png" alt="ODS 17 — Alianzas para Lograr los Objetivos">
+            </div>
+            <p class="ods-strip-disclaimer" data-i18n-html="ods_disclaimer">GeoAlertAR adhiere de forma independiente a estos Objetivos de Desarrollo Sostenible. Este uso es informativo y no implica aval ni certificación de las Naciones Unidas. <a href="maqueta-ods.html" target="_blank">Ver nuestra contribución a los ODS</a></p>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container" style="display:flex;align-items:center;justify-content:center;gap:12px;">
             <!-- ===== LOGO FOOTER =====
