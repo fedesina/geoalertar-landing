@@ -25,7 +25,10 @@ body {
     color: var(--neutral-700);
     line-height: 1.7;
     font-size: 17px;
+    overflow-x: hidden;
 }
+
+img { max-width: 100%; }
 
 h1, h2, h3 {
     font-family: 'IBM Plex Serif', Georgia, serif;
@@ -725,6 +728,9 @@ a:hover { text-decoration: underline; }
 }
 
 @media (max-width: 900px) {
+    /* Los fondos fijos se rompen en pantallas tactiles (iOS/Android) */
+    .hero, .section-tech-bg { background-attachment: scroll; }
+
     .data-grid {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -742,6 +748,10 @@ a:hover { text-decoration: underline; }
     }
 
     .legend-items { grid-template-columns: 1fr; }
+
+    /* Evita el solapamiento del hack margin-top:-600px de las imagenes de crisis */
+    .crisis-grid { grid-template-columns: 1fr; }
+    .crisis-images { grid-column: 1; margin-top: 24px; }
 }
 
 @media (max-width: 480px) {
@@ -785,17 +795,26 @@ a:hover { text-decoration: underline; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .header-content { flex-wrap: wrap; gap: 8px; justify-content: center; }
-    .header-content .logo img { height: 80px !important; }
+    /* Header: barra solida en el flujo normal.
+       En desktop es absolute con top:-50px (recorta el logo grande);
+       en celular eso dejaba el logo cortado arriba. Aca lo volvemos una
+       barra normal arriba de todo, sin solapar el hero. */
+    .header { position: static; top: auto; background: var(--primary-900); padding: 10px 0; }
+    .header-content { flex-wrap: wrap; gap: 8px 12px; justify-content: space-between; align-items: center; padding: 0 16px; }
+    .header-content .logo img { height: 52px !important; }
     .header-nav { display: none; }
-    .header-right { flex-direction: column; width: 100%; gap: 10px; }
-    .header-btn { font-size: 0.75rem; padding: 6px 12px; }
+    .header-right { flex-direction: row; flex-wrap: wrap; width: auto; gap: 8px; align-items: center; }
+    .header-btn { font-size: 0.78rem; padding: 7px 12px; }
     .lang-toggle { text-align: center; }
 
+    /* Hero: sin el padding-top gigante que compensaba el header absolute */
+    .hero { padding: 40px 0 48px; }
     .hero h1 { font-size: 1.8rem; }
-    .hero-subtitle { font-size: 0.95rem !important; }
+    .hero-subtitle { font-size: 1rem !important; }
     .hero-stats { flex-direction: column; gap: 24px; }
     .hero-stat-value { font-size: 1.8rem; }
+
+    .section { padding: 48px 0; }
 
     .crisis-grid, .story-content, .contact-grid { grid-template-columns: 1fr; }
     .crisis-images { grid-column: 1; margin-top: 24px; }
@@ -803,6 +822,8 @@ a:hover { text-decoration: underline; }
     .solution-points, .apps-grid { grid-template-columns: 1fr 1fr; }
     .awards-row { flex-direction: column; }
     .team-cards { flex-direction: column; }
+
+    .trust-logos { gap: 24px 32px; }
 
     .data-header h2, .section h2, .ods-strip-label { font-size: 1.5rem; }
 
@@ -821,15 +842,22 @@ a:hover { text-decoration: underline; }
     .comparison-card { padding: 20px; }
 
     .footer .container { flex-direction: column; text-align: center; }
-    .footer .container img { height: 80px !important; }
+    .footer .container img { height: 72px !important; }
 }
 
 @media (max-width: 480px) {
-    .header-content .logo img { height: 60px !important; }
-    .hero h1 { font-size: 1.4rem; }
+    .header-content { justify-content: center; }
+    .header-content .logo img { height: 46px !important; }
+    .header-right { justify-content: center; width: 100%; }
+    .hero { padding: 32px 0 40px; }
+    .hero h1 { font-size: 1.5rem; }
+    .hero-subtitle { font-size: 0.95rem !important; }
+    .section { padding: 40px 0; }
     .solution-points, .apps-grid, .crisis-stats { grid-template-columns: 1fr; }
     .crisis-stat { padding: 16px; }
     .data-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust-logos { gap: 18px 26px; }
+    .trust-logos img { height: 32px; }
 }
 
 /* ===== DATA SECTION ===== */
