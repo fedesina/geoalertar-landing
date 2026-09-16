@@ -1288,3 +1288,25 @@ a:hover { text-decoration: underline; }
     height: 14px;
     border-radius: 3px;
 }
+
+/* ============================================================
+   RESPONSIVE — OVERRIDES FINALES (van al final a proposito)
+   Las reglas base de .data-grid, .demo-wrapper, #map, .map-badge y
+   .data-header h2 estan declaradas MAS ABAJO que los media queries de
+   mas arriba; por la cascada CSS, aquellas ganaban y en el celular las
+   5 tarjetas y el tablero no se achicaban. Re-declarados aca para que ganen.
+   ============================================================ */
+@media (max-width: 900px) {
+    .data-grid { grid-template-columns: repeat(3, 1fr); }
+    .data-header h2, .demo-header h2 { font-size: 1.5rem; }
+    .demo-wrapper { grid-template-columns: 1fr; }
+    .demo-sidebar { order: -1; }
+    #map { height: 380px; }
+    .map-badge { display: none; }
+    .data-container, .demo-container { padding: 0 16px; }
+}
+
+@media (max-width: 480px) {
+    .data-grid { grid-template-columns: repeat(2, 1fr); }
+    #map { height: 320px; }
+}
