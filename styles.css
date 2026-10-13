@@ -50,15 +50,16 @@ a:hover { text-decoration: underline; }
 .header {
     /* ===== HEADER: absolute = se queda arriba del hero, NO sigue al scrollear ===== */
     position: absolute;
-    /* ===== HEADER POSICIÓN: top controla distancia desde arriba (0 = pegado) ===== */
-    top: -50px;
+    /* ===== HEADER POSICIÓN: top controla distancia desde arriba (0 = pegado) =====
+       (13-oct-2026: era -50px para compensar el borde transparente del logo viejo) */
+    top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     background: transparent;
     border-bottom: none;
     /* ===== HEADER ESPACIO: padding controla espacio interno arriba/abajo ===== */
-    padding: 10px 0;
+    padding: 24px 0;
 }
 
 .header-content {
@@ -801,7 +802,7 @@ a:hover { text-decoration: underline; }
        barra normal arriba de todo, sin solapar el hero. */
     .header { position: static; top: auto; background: var(--primary-900); padding: 10px 0; }
     .header-content { flex-wrap: wrap; gap: 8px 12px; justify-content: space-between; align-items: center; padding: 0 16px; }
-    .header-content .logo img { height: 52px !important; }
+    .header-content .logo img { height: 44px !important; }
     .header-nav { display: none; }
     .header-right { flex-direction: row; flex-wrap: wrap; width: auto; gap: 8px; align-items: center; }
     .header-btn { font-size: 0.78rem; padding: 7px 12px; }
@@ -847,7 +848,7 @@ a:hover { text-decoration: underline; }
 
 @media (max-width: 480px) {
     .header-content { justify-content: center; }
-    .header-content .logo img { height: 46px !important; }
+    .header-content .logo img { height: 40px !important; }
     .header-right { justify-content: center; width: 100%; }
     .hero { padding: 32px 0 40px; }
     .hero h1 { font-size: 1.5rem; }
@@ -1405,3 +1406,14 @@ a:hover { text-decoration: underline; }
 
 /* v2 Paso 2 (13-oct-2026): aviso si el mapa publico no carga (nunca numeros inventados) */
 .live-error { margin: 0; font-size: 0.85rem; line-height: 1.4; color: var(--neutral-300); }
+
+/* v2 (13-oct-2026): cartel "Toca un hexagono" abajo a la derecha DEL MAPA, sobre
+   el mar (antes arriba a la derecha del bloque: caia sobre el panel y tapaba la
+   fecha). Panel = 340px + gap 24px = 364px. En < 900px el cartel ya esta oculto. */
+.map-badge {
+    top: auto;
+    bottom: 36px;
+    right: calc(364px + 16px);
+    white-space: nowrap;
+}
+.map-badge.fade-out { transform: translateY(10px); }
