@@ -1,22 +1,32 @@
 # 🌲🔥 GeoAlertAR
-> **Sistema de Alerta Temprana de Incendios Forestales basado en Inteligencia Satelital.**
+> **Condiciones de ignición de incendios forestales en toda Argentina, todos los días.**
 
 [![NASA Space Apps](https://img.shields.io/badge/NASA_Space_Apps-Best_Mission_Concept_2025-0B3D91?style=for-the-badge&logo=nasa)](https://www.spaceappschallenge.org/)
-[![Status](https://img.shields.io/badge/Status-Production-success?style=for-the-badge)](https://www.geoalertar.com.ar)
+[![Status](https://img.shields.io/badge/Status-Operativo-success?style=for-the-badge)](https://www.geoalertar.com.ar)
 [![Lang](https://img.shields.io/badge/Lang-ES_|_EN-blue?style=for-the-badge)](#)
 
-## 🚀 Sobre el Proyecto
+Sitio institucional de **GeoAlertAR** — [www.geoalertar.com.ar](https://www.geoalertar.com.ar). La aplicación vive en [appgeoalertar.com.ar](https://appgeoalertar.com.ar).
 
-**GeoAlertAR** es una plataforma tecnológica diseñada para transformar la gestión de incendios forestales de reactiva a preventiva. Utilizando datos satelitales (MODIS, Landsat, Sentinel) y modelos predictivos de Machine Learning, el sistema permite identificar zonas de riesgo extremo hasta **7 días antes** de que ocurra la ignición.
+## 🚀 Sobre el proyecto
 
-### 🌟 Funcionalidades Clave
+GeoAlertAR **mide las condiciones de ignición del combustible** en más de 13.400 hexágonos que cubren Argentina, todos los días, y las pronostica hasta 7 días. No detecta ni predice incendios: dice dónde el combustible está en condiciones de encenderse y propagar fuego, para que bomberos y agencias se preparen antes.
 
-* **🌐 Internacionalización Completa (i18n):** Soporte nativo y dinámico para Español e Inglés, con persistencia de preferencia de usuario.
-* **🗺️ Mapa Interactivo de Riesgo:** Visualización geoespacial mediante grillas hexagonales que analizan variables críticas (humedad de combustible vivo, viento, temperatura).
-* **📱 Diseño Responsive:** Interfaz adaptada a dispositivos móviles para uso en terreno por brigadistas.
-* **⚡ Arquitectura Optimizada:** Código refactorizado y modular para máximo rendimiento y mantenibilidad.
+El motor es el **Índice Meteorológico de Peligro de Incendio (FWI)** del sistema canadiense (Van Wagner, 1987): un modelo físico, publicado y auditable, alimentado con:
 
----
+| Dato | Fuente |
+| :--- | :--- |
+| Temperatura, humedad y viento | NOAA · GFS |
+| Lluvia | JAXA · GSMaP |
+| Focos de calor (contraste diario) | NASA · FIRMS |
+| Vegetación y combustible | ESA · WorldCover |
+| Relieve | NASA · SRTM |
+| Límites y cartografía | IGN Argentina |
+
+## 🌟 Qué tiene la landing
+
+* **El mapa de hoy:** el nivel de condiciones de cada hexágono, con el dato real publicado ese día (solo el nivel; el detalle es para usuarios del sistema).
+* **Cómo se calcula:** de la lluvia y el tiempo del mediodía al nivel por zona, paso a paso.
+* **Español e inglés**, diseño adaptado a celular y animaciones que respetan "reducir movimiento".
 
 ## 🏆 Reconocimientos
 
@@ -24,27 +34,22 @@
 | :--- | :--- | :--- | :--- |
 | **NASA Space Apps Challenge** | 🥇 Best Mission Concept | 2025 | NASA / CONAE |
 
----
+## 🛠️ Tecnología
 
-## 🛠️ Tecnologías Utilizadas
+* HTML, CSS y JavaScript sin frameworks.
+* [Leaflet](https://leafletjs.com/) para el mapa; FontAwesome e IBM Plex Sans (Google Fonts).
+* Seguridad: Content-Security-Policy y Subresource Integrity en las librerías externas.
+* Despliegue: GitHub Pages.
 
-El proyecto está construido sobre un stack moderno y ligero, sin dependencias pesadas:
-
-* **Core:** HTML5 Semántico, CSS3 (Variables & Flexbox/Grid), Vanilla JavaScript (ES6+).
-* **Mapeo:** [Leaflet.js](https://leafletjs.com/) para renderizado de mapas y capas geoespaciales.
-* **Estilos:** [FontAwesome](https://fontawesome.com/) (Iconografía) y Google Fonts (Tipografía IBM Plex Sans).
-* **Despliegue:** GitHub Pages.
-
----
-
-## 📂 Estructura del Repositorio
-
-La arquitectura del proyecto ha sido refactorizada para separar responsabilidades:
+## 📂 Estructura
 
 ```text
 geoalertar-landing/
-├── index.html       # Estructura semántica y metadatos
-├── styles.css       # Estilos globales, diseño responsivo y animaciones
-├── script.js        # Lógica de negocio, control del mapa y diccionario de traducciones
-├── img/             # Assets gráficos optimizados (Logos, fondos, diagramas)
-└── README.md        # Documentación oficial
+├── index.html                 # Página principal
+├── styles.css                 # Estilos y animaciones
+├── script.js                  # Textos ES/EN y mapa de hoy
+├── maqueta-ods.html           # Objetivos de Desarrollo Sostenible
+├── politica-privacidad.html   # Política de privacidad
+├── terminos.html              # Términos y condiciones
+└── img/                       # Imágenes
+```

@@ -1,125 +1,88 @@
 // ===== INTERNACIONALIZACIÓN =====
-let currentLang = localStorage.getItem('geoalert-lang') || 'es';
+// Idioma recordado (localStorage puede fallar en modo privado: nunca rompe la pagina)
+function leerIdioma() { try { const v = localStorage.getItem('geoalert-lang'); return v === 'en' ? 'en' : 'es'; } catch (e) { return 'es'; } }
+let currentLang = leerIdioma();
 let lastSelectedHexProps = null;
 
 const translations = {
     es: {
         // Header
         header_login: "Acceder",
-        nav_demo: "Demo",
+        nav_demo: "Mapa de hoy",
         nav_equipo: "Quiénes somos",
         header_cta: "Contactar",
         // Hero
         hero_title: "Inteligencia Territorial de Riesgo de Incendios Forestales",
-        hero_subtitle: "Te decimos dónde van a darse las condiciones de riesgo de incendio con hasta 7 días de anticipación. Cubrimos todo el territorio argentino, todos los días. Para que actúes antes de que sea tarde.",
-        hero_validated: "Sistema operativo y validado en emergencias reales.",
+        hero_subtitle: "Medimos todos los días, en toda la Argentina, dónde se dan las condiciones para que un incendio empiece y se propague. Hoy y con pronóstico a 7 días, para prepararte antes de que aparezca el fuego.",
+        hero_validated: "Sistema en operación diaria, contrastado todos los días con focos de calor satelitales (NASA FIRMS).",
         hero_cta_login: "Acceder al sistema",
         // Trust
-        trust_label: "Validado con datos de",
+        trust_label: "Fuentes de datos",
         // Data
-        data_title: "Capacidad de datos",
-        data_subtitle: "El motor de riesgo se basa en el índice FWI, complementado con modelos satelitales que calibran y regionalizan el análisis según cada territorio, entrenados con datos históricos verificados de incendios en Argentina.",
-        data_card1_label: "Detecciones satelitales analizadas",
-        data_card2_label: "Años de datos históricos",
+        data_title: "Qué mide el sistema",
+        data_subtitle: "El motor es el Índice Meteorológico de Peligro de Incendio (FWI) del sistema canadiense, el estándar que usan Canadá, el servicio europeo EFFIS y el Servicio Nacional de Manejo del Fuego. Lo calculamos todos los días, zona por zona, con memoria de la sequía acumulada y el combustible de cada lugar.",
+        data_card1_label: "Hexágonos calculados cada día en todo el país",
+        data_card2_label: "Actualización con satélites y modelo meteorológico",
         data_card3_value: "7 días",
-        data_card3_label: "Anticipación de riesgo",
+        data_card3_label: "Pronóstico de condiciones",
         data_card4_title: "Fuentes integradas",
         data_card4_desc: "Datos satelitales, meteorológicos y territoriales en un solo sistema.",
         data_card5_title: "Malla adaptable",
         data_card5_desc: "Se ajusta a la escala y necesidad de cada territorio.",
         // Demo
-        demo_title: "Tablero de Comando Táctico",
-        demo_subtitle: "Vista previa de la interfaz del sistema. Los datos mostrados son ilustrativos para demostrar el funcionamiento.",
-        demo_disclaimer_badge: "DEMOSTRACIÓN SIMPLIFICADA",
-        demo_disclaimer_text: "Este demo muestra una versión simplificada. El sistema completo hace mucho más:",
-        demo_accordion_toggle: "Ver funciones completas",
-        demo_acc1_title: "Resumen general del territorio",
-        demo_acc2_title: "Riesgo y evolución temporal",
-        demo_acc3_title: "Condiciones ambientales",
-        demo_acc4_title: "Vegetación y combustible",
-        demo_acc5_title: "Pronóstico hasta 7 días",
-        demo_acc6_title: "Capas de información disponibles",
-        demo_acc7_title: "Contexto socioterritorial",
-        demo_sidebar_title: "Análisis de zona",
-        demo_sidebar_intro: 'El sistema cruza el riesgo climático con la ubicación de infraestructura crítica: <strong>escuelas, líneas eléctricas y cuarteles de bomberos</strong>. <span class="demo-cta">👉 Hacé click en un hexágono para ver el análisis completo</span>',
-        map_badge_text: "Hacé click en cualquier hexágono",
-        demo_explanation_title: "¿Por qué este nivel?",
-        demo_explanation_loading: "Cargando análisis...",
-        demo_label_temp: "Temperatura",
-        demo_label_wind: "Viento",
-        demo_label_precip: "Precip. 7 días",
-        demo_label_slope: "Pendiente",
-        demo_legend_title: "Niveles de riesgo (FWI)",
+        demo_title: "El mapa de hoy",
+        demo_subtitle: "Condiciones de ignición de hoy en todo el país, calculadas por el sistema. Dato real, actualizado todos los días.",
+        demo_sidebar_title: "Argentina hoy",
+        map_badge_text: "Tocá un hexágono",
+        demo_legend_title: "Niveles (índice FWI)",
         demo_legend_extreme: "Extremo (≥46)",
         demo_legend_veryhigh: "Muy alto (28-45)",
         demo_legend_high: "Alto (15-27)",
         demo_legend_moderate: "Moderado (6-14)",
         demo_legend_low: "Bajo (<6)",
-        demo_risk_word: "riesgo",
         // Risk levels
         risk_extreme: "EXTREMO",
         risk_veryhigh: "MUY ALTO",
         risk_high: "ALTO",
         risk_moderate: "MODERADO",
         risk_low: "BAJO",
-        // Explanation fragments
-        explain_temp_very_high: "temperatura muy elevada ({value}°C)",
-        explain_temp_high: "temperatura alta ({value}°C)",
-        explain_temp_low: "temperatura baja ({value}°C) reduce el riesgo",
-        explain_wind_very_strong: "vientos muy fuertes ({value} km/h) favorecen propagación rápida",
-        explain_wind_moderate: "vientos moderados a fuertes ({value} km/h)",
-        explain_wind_calm: "vientos calmos",
-        explain_rain_none: "prácticamente sin lluvias en los últimos 7 días",
-        explain_rain_scarce: "precipitaciones escasas ({value} mm)",
-        explain_rain_significant: "lluvias recientes significativas ({value} mm) reducen el riesgo",
-        explain_rain_moderate: "lluvias moderadas ({value} mm)",
-        explain_intro_extreme: "Condiciones críticas: ",
-        explain_intro_veryhigh: "Condiciones de riesgo muy elevado: ",
-        explain_intro_high: "Condiciones de riesgo elevado: ",
-        explain_intro_moderate: "Condiciones intermedias: ",
-        explain_intro_low: "Condiciones favorables: ",
-        explain_fallback: "múltiples factores combinados determinan este nivel de riesgo.",
-        // Case study
-        case_title: "Precisión comprobada en el terreno",
-        case_subtitle: "Durante la crisis de Patagonia en marzo de 2026, el sistema identificó las zonas de riesgo extremo días antes de que se confirmaran los primeros focos.",
-        case_footer: "Focos de calor confirmados por satélites internacionales ocurrieron dentro de las zonas de riesgo identificadas por el sistema.",
         // Tech
-        tech_title: "Tecnología Adaptativa Regional",
-        tech_intro: "A diferencia de modelos globales genéricos diseñados para cualquier geografía, GeoAlertAR está construido para entender Argentina.",
-        tech_box_title: "Adaptado a cada región de Argentina",
-        tech_box_p1: "No usamos un modelo genérico global. El sistema detecta automáticamente la región y adapta su análisis a las condiciones locales. Lo que es crítico en Patagonia no es lo mismo que en el NEA o en Cuyo.",
-        tech_box_p2: "<strong>Ventaja operativa:</strong> Un modelo global te da un promedio. GeoAlertAR te da precisión territorial adaptada a la diversidad del territorio argentino.",
-        tech_point1_title: "Calibración y regionalización con datos argentinos",
-        tech_point1_desc: "El índice FWI se combina con modelos satelitales calibrados con más de 200K detecciones históricas reales de Argentina —no datasets globales genéricos— para regionalizar el análisis y clasificar automáticamente el tipo de vegetación.",
-        tech_point2_title: "Adaptación automática",
-        tech_point2_desc: "El sistema identifica la región y ajusta sus parámetros a las condiciones locales del terreno y el clima.",
-        tech_point3_title: "Validación diaria",
-        tech_point3_desc: "Cada estimación de riesgo se cruza con focos de calor reales confirmados por satélites internacionales.",
+        tech_title: "Física estándar, adaptada a cada territorio",
+        tech_intro: "Usamos el método que el mundo ya validó y lo alimentamos con datos de cada lugar de la Argentina.",
+        tech_box_title: "Un método auditable, sin caja negra",
+        tech_box_p1: "El FWI es un modelo físico publicado: cada nivel se explica con la lluvia, la humedad, el viento y la temperatura que lo produjeron. No depende de un modelo entrenado imposible de auditar.",
+        tech_box_p2: "<strong>Ventaja operativa:</strong> el mismo índice que ya conocen los equipos de manejo del fuego, calculado a la escala de cada territorio, todos los días.",
+        tech_point1_title: "Combustible de cada zona",
+        tech_point1_desc: "Cruzamos el índice con el tipo de vegetación de cada hexágono —cobertura satelital y una clasificación de combustibles adaptada a la Argentina— para distinguir dónde realmente hay con qué arder.",
+        tech_point2_title: "Memoria de la sequía",
+        tech_point2_desc: "El sistema recuerda la lluvia y el secado de los días anteriores: un día de calor no pesa igual después de dos meses sin lluvia.",
+        tech_point3_title: "Contraste diario",
+        tech_point3_desc: "Todos los días el mapa se compara con los focos de calor detectados por satélites de la NASA (FIRMS).",
         // Crisis
         crisis_title: "El problema no es el clima, es la imprevisibilidad",
-        crisis_intro: "Gran parte del territorio argentino tiene vegetación seca lista para arder. Nuestro trabajo no es decirte que está seco —eso ya lo sabés— es decirte dónde la vulnerabilidad humana va a encender la mecha.",
-        crisis_li1: '<strong>Factor humano:</strong> El 95% de los incendios se originan por actividad humana (intencional o negligencia), según el Servicio Nacional de Manejo del Fuego (SNMF) — una fuente de ignición que, en la práctica, es imposible de anticipar. Por eso lo único que sí se puede anticipar es <em>dónde</em> esa chispa inevitable encontraría condiciones para volverse catástrofe.',
-        crisis_li2: '<strong>Ventana de ignición:</strong> Las condiciones críticas (temperatura, viento, sequía) son estimables con 7 días de anticipación. El problema es saber <em>dónde</em> mirar.',
-        crisis_li3: '<strong>Escala nacional:</strong> Argentina no tiene un ecosistema homogéneo. Lo que funciona en Corrientes no funciona en Chubut.',
-        crisis_li4: '<strong>Pérdida sostenida:</strong> En Argentina se pierden en promedio más de 300.000 hectáreas de bosque nativo por año a causa de incendios, según el Ministerio de Ambiente y Desarrollo Sostenible (MAyDS), 1998–2018.',
+        crisis_intro: "Gran parte del territorio argentino tiene vegetación seca lista para arder. Saber que está seco no alcanza: lo que importa es dónde y cuándo las condiciones hacen que una chispa se convierta en incendio.",
+        crisis_li1: "<strong>Factor humano:</strong> El 95% de los incendios se originan por actividad humana (intencional o negligencia), según el Servicio Nacional de Manejo del Fuego (SNMF) — una fuente de ignición que, en la práctica, es imposible de anticipar. Por eso lo único que sí se puede anticipar es <em>dónde</em> esa chispa inevitable encontraría condiciones para volverse catástrofe.",
+        crisis_li2: "<strong>Ventana de anticipación:</strong> Temperatura, humedad, viento y lluvia se pronostican con días de anticipación. El problema es saber <em>dónde</em> mirar.",
+        crisis_li3: "<strong>Escala nacional:</strong> Argentina no tiene un ecosistema homogéneo. Lo que funciona en Corrientes no funciona en Chubut.",
+        crisis_li4: "<strong>Pérdida sostenida:</strong> En Argentina se pierden en promedio más de 300.000 hectáreas de bosque nativo por año a causa de incendios, según el Ministerio de Ambiente y Desarrollo Sostenible (MAyDS), 1998–2018.",
         crisis_source: "Fuentes: Servicio Nacional de Manejo del Fuego (SNMF) y MAyDS.",
         crisis_stat1_label: "Hectáreas quemadas en Argentina (2020-2024)",
-        crisis_stat2_label: "Hectáreas en Patagonia (enero 2026, en curso)",
+        crisis_stat2_label: "Hectáreas en Patagonia (temporada 2025-2026)",
         crisis_stat3_label: "Hectáreas en Corrientes (2022)",
         crisis_stat4_label: "Causados por actividad humana",
         // Comparison
         comparison_title: "El cambio de paradigma",
         comparison_intro: "La gestión tradicional de incendios opera en modo reactivo. GeoAlertAR transforma la operación hacia un modelo de anticipación y prevención.",
         comparison_before_title: "Desafío Actual (Gestión Reactiva)",
-        comparison_before_li1: '<strong>Respuesta post-incidente</strong><span>Se actúa cuando el satélite detecta el foco térmico (fuego ya iniciado).</span>',
-        comparison_before_li2: '<strong>Pérdida de Capital Natural</strong><span>Daños inevitables en hectáreas productivas y nativas.</span>',
-        comparison_before_li3: '<strong>Asignación Generalista</strong><span>Patrullaje rutinario cubriendo grandes zonas sin foco definido.</span>',
-        comparison_before_li4: '<strong>Intuición Operativa</strong><span>Decisiones basadas en experiencia, pero sin datos en tiempo real.</span>',
+        comparison_before_li1: "<strong>Respuesta post-incidente</strong><span>Se actúa cuando el satélite detecta el foco térmico (fuego ya iniciado).</span>",
+        comparison_before_li2: "<strong>Pérdida de Capital Natural</strong><span>Daños inevitables en hectáreas productivas y nativas.</span>",
+        comparison_before_li3: "<strong>Asignación Generalista</strong><span>Patrullaje rutinario cubriendo grandes zonas sin foco definido.</span>",
+        comparison_before_li4: "<strong>Intuición Operativa</strong><span>Decisiones basadas en experiencia, pero sin datos en tiempo real.</span>",
         comparison_after_title: "Ventaja GeoAlertAR (Gestión Preventiva)",
-        comparison_after_li1: '<strong>Anticipación Estratégica</strong><span>Alerta de riesgo extremo 7 días antes de la ignición.</span>',
-        comparison_after_li2: '<strong>Protección de Activos</strong><span>Blindaje preventivo de zonas de alto valor económico/ecológico.</span>',
-        comparison_after_li3: '<strong>Despliegue de Precisión</strong><span>Movilización de recursos a las coordenadas exactas de riesgo.</span>',
-        comparison_after_li4: '<strong>Inteligencia Territorial</strong><span>Tablero de comando con índices hídricos y de combustible vivo.</span>',
+        comparison_after_li1: "<strong>Anticipación</strong><span>Condiciones de riesgo pronosticadas hasta 7 días antes.</span>",
+        comparison_after_li2: "<strong>Prioridad de activos</strong><span>Saber qué zonas de alto valor económico o ecológico entran en riesgo alto.</span>",
+        comparison_after_li3: "<strong>Despliegue focalizado</strong><span>Recursos y patrullajes donde las condiciones son más críticas, zona por zona.</span>",
+        comparison_after_li4: "<strong>Inteligencia territorial</strong><span>Tablero con humedad del combustible, sequía acumulada y evolución de 30 días.</span>",
         // Team
         team_title: "Quiénes somos",
         team_p1: "GeoalertAR nació de una pregunta incómoda: ¿por qué con toda la tecnología satelital disponible, seguimos reaccionando cuando el fuego ya está quemando?",
@@ -149,7 +112,7 @@ const translations = {
         apps_item3_title: "Aseguradoras",
         apps_item3_desc: "Evaluación de riesgo por zona para pricing de pólizas y prevención de siniestros.",
         apps_item4_title: "Bomberos",
-        apps_item4_desc: "Anticipación táctica para pre-posicionar recursos donde el riesgo es inminente.",
+        apps_item4_desc: "Anticipación táctica para pre-posicionar recursos donde las condiciones son más críticas.",
         apps_item5_title: "ONGs y áreas protegidas",
         apps_item5_desc: "Monitoreo continuo de reservas y ecosistemas prioritarios para actuar antes de que el fuego los alcance.",
         apps_cta: "Solicitar piloto",
@@ -160,125 +123,125 @@ const translations = {
         footer_text: "© 2026 GeoAlertAR — Desarrollado en Argentina",
         // ODS
         ods_label: "GeoAlertAR contribuye a los Objetivos de Desarrollo Sostenible de la ONU",
-        ods_disclaimer: 'GeoAlertAR adhiere de forma independiente a estos Objetivos de Desarrollo Sostenible. Este uso es informativo y no implica aval ni certificación de las Naciones Unidas. <a href="maqueta-ods.html" target="_blank">Ver nuestra contribución a los ODS</a>'
+        ods_disclaimer: "GeoAlertAR adhiere de forma independiente a estos Objetivos de Desarrollo Sostenible. Este uso es informativo y no implica aval ni certificación de las Naciones Unidas. <a href=\"maqueta-ods.html\" target=\"_blank\">Ver nuestra contribución a los ODS</a>",
+        // Landing v2 (13-oct-2026): mapa de hoy, "Como se calcula", "Del pronostico a la accion"
+        live_pill_pre: "Dato de hoy",
+        live_pill_post: "zonas en riesgo alto o más",
+        data_card2_value: "Diario",
+        metodo_title: "Cómo se calcula, todos los días",
+        metodo_subtitle: "Un método físico, publicado y auditable: cada nivel se puede explicar con los datos que lo produjeron.",
+        metodo_s1_t: "Lluvia",
+        metodo_s1_d: "Lo que llovió en las últimas 24 h, medido por satélite.",
+        metodo_s2_t: "Tiempo del mediodía",
+        metodo_s2_d: "Temperatura, humedad y viento a la hora de más peligro.",
+        metodo_s3_t: "Memoria de la sequía",
+        metodo_s3_d: "Cuánto se secó el combustible fino, el mediano y el profundo, día tras día.",
+        metodo_s4_t: "Índice FWI",
+        metodo_s4_d: "El índice canadiense (Van Wagner, 1987), estándar internacional.",
+        metodo_s5_t: "Nivel por zona",
+        metodo_s5_d: "Un nivel por hexágono, cruzado con el combustible de cada lugar.",
+        live_label: "Dato del",
+        hex_locked_text: "El detalle de cada zona —índice FWI, humedad del combustible, viento, sequía acumulada y pronóstico a 7 días— está en el acceso profesional.",
+        hex_locked_cta: "Pedir acceso",
+        src_gfs: "Temperatura, humedad y viento",
+        src_gsmap: "Lluvia por satélite",
+        src_firms: "Focos de calor",
+        src_esa: "Vegetación y combustible",
+        src_srtm: "Relieve y pendiente",
+        src_ign: "Límites y cartografía",
+        accion_title: "Del pronóstico a la acción",
+        accion_intro: "Así se usa en una semana de temporada. Ejemplo ilustrativo de un cuartel de bomberos.",
+        accion_d1_when: "Lunes",
+        accion_d1_lvl: "Pronóstico: muy alto el jueves",
+        accion_d1_txt: "El mapa a 7 días marca que el jueves la zona del cuartel pasa a riesgo muy alto: viento fuerte después de tres semanas sin lluvia.",
+        accion_d2_when: "Martes y miércoles",
+        accion_d2_lvl: "Preparación",
+        accion_d2_txt: "Se refuerza la guardia para el jueves, se revisan equipos y se avisa a los vecinos que no hagan quemas.",
+        accion_d3_when: "Jueves",
+        accion_d3_lvl: "Día crítico",
+        accion_d3_txt: "Si aparece un foco, la dotación ya está lista y sabe qué zonas tienen el combustible más seco.",
+        live_pill_pre_old: "Dato del",
+        mapa_error: "No pudimos cargar el mapa de hoy. Probá de nuevo en unos minutos.",
+        risk_nodata: "SIN DATOS",
     },
     en: {
         // Header
         header_login: "Login",
-        nav_demo: "Demo",
+        nav_demo: "Today's map",
         nav_equipo: "About us",
         header_cta: "Contact",
         // Hero
         hero_title: "Territorial Intelligence for Wildfire Risk",
-        hero_subtitle: "We tell you where wildfire risk conditions will develop up to 7 days in advance. We cover all of Argentina, every day. So you can act before it's too late.",
-        hero_validated: "Operational system, validated in real emergencies.",
+        hero_subtitle: "Every day, across all of Argentina, we measure where conditions allow a fire to start and spread. Today and with a 7-day forecast, so you can prepare before fire appears.",
+        hero_validated: "Running every day, checked daily against satellite hotspots (NASA FIRMS).",
         hero_cta_login: "Access system",
         // Trust
-        trust_label: "Validated with data from",
+        trust_label: "Data sources",
         // Data
-        data_title: "Data Capacity",
-        data_subtitle: "The risk engine is based on the FWI index, complemented by satellite models that calibrate and regionalize the analysis for each territory, trained with verified historical wildfire data from Argentina.",
-        data_card1_label: "Satellite detections analyzed",
-        data_card2_label: "Years of historical data",
+        data_title: "What the system measures",
+        data_subtitle: "The engine is the Canadian Fire Weather Index (FWI), the standard used by Canada, the European EFFIS service and Argentina's National Fire Management Service. We compute it every day, zone by zone, with memory of accumulated drought and the fuel in each place.",
+        data_card1_label: "Hexagons computed daily across the country",
+        data_card2_label: "Updated with satellites and a weather model",
         data_card3_value: "7 days",
-        data_card3_label: "Risk anticipation",
+        data_card3_label: "Conditions forecast",
         data_card4_title: "Integrated sources",
         data_card4_desc: "Satellite, weather and territorial data in a single system.",
         data_card5_title: "Adaptive grid",
         data_card5_desc: "Adapts to the scale and needs of each territory.",
         // Demo
-        demo_title: "Tactical Command Dashboard",
-        demo_subtitle: "System interface preview. Data shown is illustrative to demonstrate functionality.",
-        demo_disclaimer_badge: "SIMPLIFIED DEMO",
-        demo_disclaimer_text: "This is a simplified demo. The full system does much more:",
-        demo_accordion_toggle: "See full capabilities",
-        demo_acc1_title: "Overall territory status",
-        demo_acc2_title: "Risk and time evolution",
-        demo_acc3_title: "Environmental conditions",
-        demo_acc4_title: "Vegetation and fuel",
-        demo_acc5_title: "7-day forecast",
-        demo_acc6_title: "Available data layers",
-        demo_acc7_title: "Socio-territorial context",
-        demo_sidebar_title: "Zone analysis",
-        demo_sidebar_intro: 'The system cross-references climate risk with critical infrastructure locations: <strong>schools, power lines, and fire stations</strong>. <span class="demo-cta">👉 Click on a hexagon to view the full analysis</span>',
-        map_badge_text: "Click on any hexagon",
-        demo_explanation_title: "Why this level?",
-        demo_explanation_loading: "Loading analysis...",
-        demo_label_temp: "Temperature",
-        demo_label_wind: "Wind",
-        demo_label_precip: "Precip. 7 days",
-        demo_label_slope: "Slope",
-        demo_legend_title: "Risk levels (FWI)",
+        demo_title: "Today's map",
+        demo_subtitle: "Today's ignition conditions across the country, computed by the system. Real data, updated every day.",
+        demo_sidebar_title: "Argentina today",
+        map_badge_text: "Tap a hexagon",
+        demo_legend_title: "Levels (FWI index)",
         demo_legend_extreme: "Extreme (≥46)",
         demo_legend_veryhigh: "Very high (28-45)",
         demo_legend_high: "High (15-27)",
         demo_legend_moderate: "Moderate (6-14)",
         demo_legend_low: "Low (<6)",
-        demo_risk_word: "risk",
         // Risk levels
         risk_extreme: "EXTREME",
         risk_veryhigh: "VERY HIGH",
         risk_high: "HIGH",
         risk_moderate: "MODERATE",
         risk_low: "LOW",
-        // Explanation fragments
-        explain_temp_very_high: "very high temperature ({value}°C)",
-        explain_temp_high: "high temperature ({value}°C)",
-        explain_temp_low: "low temperature ({value}°C) reduces risk",
-        explain_wind_very_strong: "very strong winds ({value} km/h) favor rapid spread",
-        explain_wind_moderate: "moderate to strong winds ({value} km/h)",
-        explain_wind_calm: "calm winds",
-        explain_rain_none: "virtually no rainfall in the last 7 days",
-        explain_rain_scarce: "scarce precipitation ({value} mm)",
-        explain_rain_significant: "significant recent rainfall ({value} mm) reduces risk",
-        explain_rain_moderate: "moderate rainfall ({value} mm)",
-        explain_intro_extreme: "Critical conditions: ",
-        explain_intro_veryhigh: "Very high risk conditions: ",
-        explain_intro_high: "High risk conditions: ",
-        explain_intro_moderate: "Intermediate conditions: ",
-        explain_intro_low: "Favorable conditions: ",
-        explain_fallback: "multiple combined factors determine this risk level.",
-        // Case study
-        case_title: "Field-proven accuracy",
-        case_subtitle: "During the Patagonia crisis in March 2026, the system identified extreme risk zones days before the first hotspots were confirmed.",
-        case_footer: "Hotspots confirmed by international satellites occurred within the risk zones identified by the system.",
         // Tech
-        tech_title: "Regional Adaptive Technology",
-        tech_intro: "Unlike generic global models designed for any geography, GeoAlertAR is built to understand Argentina.",
-        tech_box_title: "Adapted to each region of Argentina",
-        tech_box_p1: "We don't use a generic global model. The system automatically detects the region and adapts its analysis to local conditions. What's critical in Patagonia is not the same as in the NEA or Cuyo.",
-        tech_box_p2: "<strong>Operational advantage:</strong> A global model gives you an average. GeoAlertAR gives you territorial precision adapted to Argentina's diversity.",
-        tech_point1_title: "Calibration and regionalization with Argentine data",
-        tech_point1_desc: "The FWI index is combined with satellite models calibrated with over 200K real historical detections from Argentina —not generic global datasets— to regionalize the analysis and automatically classify vegetation type.",
-        tech_point2_title: "Automatic adaptation",
-        tech_point2_desc: "The system identifies the region and adjusts its parameters to local terrain and climate conditions.",
-        tech_point3_title: "Daily validation",
-        tech_point3_desc: "Each risk estimate is cross-referenced with real hotspots confirmed by international satellites.",
+        tech_title: "Standard physics, adapted to each territory",
+        tech_intro: "We use the method the world has already validated and feed it with data from each place in Argentina.",
+        tech_box_title: "An auditable method, no black box",
+        tech_box_p1: "FWI is a published physical model: every level is explained by the rain, humidity, wind and temperature that produced it. It doesn't depend on a trained model that can't be audited.",
+        tech_box_p2: "<strong>Operational advantage:</strong> the same index fire management teams already know, computed at the scale of each territory, every day.",
+        tech_point1_title: "Fuel in each zone",
+        tech_point1_desc: "We combine the index with the vegetation type of each hexagon —satellite land cover and a fuel classification adapted to Argentina— to tell where there is really something to burn.",
+        tech_point2_title: "Drought memory",
+        tech_point2_desc: "The system remembers previous days' rain and drying: a hot day weighs differently after two months without rain.",
+        tech_point3_title: "Daily check",
+        tech_point3_desc: "Every day the map is compared with hotspots detected by NASA satellites (FIRMS).",
         // Crisis
         crisis_title: "The problem isn't the climate, it's the unpredictability",
-        crisis_intro: "Much of Argentina's territory has dry vegetation ready to burn. Our job isn't to tell you it's dry — you already know that — it's to tell you where human vulnerability will light the fuse.",
-        crisis_li1: '<strong>Human factor:</strong> 95% of fires originate from human activity (intentional or negligence), according to Argentina\'s National Fire Management Service (SNMF) — an ignition source that is, in practice, impossible to anticipate. That\'s why the only thing that can be anticipated is <em>where</em> that inevitable spark would find conditions to become a catastrophe.',
-        crisis_li2: '<strong>Ignition window:</strong> Critical conditions (temperature, wind, drought) are estimable 7 days in advance. The problem is knowing <em>where</em> to look.',
-        crisis_li3: '<strong>National scale:</strong> Argentina doesn\'t have a homogeneous ecosystem. What works in Corrientes doesn\'t work in Chubut.',
-        crisis_li4: '<strong>Sustained loss:</strong> Argentina loses over 300,000 hectares of native forest per year to fire on average, according to the National Ministry of Environment (MAyDS), 1998–2018.',
+        crisis_intro: "Much of Argentina has dry vegetation ready to burn. Knowing it's dry isn't enough: what matters is where and when conditions turn a spark into a wildfire.",
+        crisis_li1: "<strong>Human factor:</strong> 95% of fires originate from human activity (intentional or negligence), according to Argentina's National Fire Management Service (SNMF) — an ignition source that is, in practice, impossible to anticipate. That's why the only thing that can be anticipated is <em>where</em> that inevitable spark would find conditions to become a catastrophe.",
+        crisis_li2: "<strong>Anticipation window:</strong> Temperature, humidity, wind and rain are forecast days ahead. The problem is knowing <em>where</em> to look.",
+        crisis_li3: "<strong>National scale:</strong> Argentina doesn't have a homogeneous ecosystem. What works in Corrientes doesn't work in Chubut.",
+        crisis_li4: "<strong>Sustained loss:</strong> Argentina loses over 300,000 hectares of native forest per year to fire on average, according to the National Ministry of Environment (MAyDS), 1998–2018.",
         crisis_source: "Sources: National Fire Management Service (SNMF) and MAyDS.",
         crisis_stat1_label: "Hectares burned in Argentina (2020-2024)",
-        crisis_stat2_label: "Hectares in Patagonia (January 2026, ongoing)",
+        crisis_stat2_label: "Hectares in Patagonia (2025-2026 season)",
         crisis_stat3_label: "Hectares in Corrientes (2022)",
         crisis_stat4_label: "Caused by human activity",
         // Comparison
         comparison_title: "The paradigm shift",
         comparison_intro: "Traditional fire management operates in reactive mode. GeoAlertAR shifts operations toward a model of anticipation and prevention.",
         comparison_before_title: "Current Challenge (Reactive Management)",
-        comparison_before_li1: '<strong>Post-incident response</strong><span>Action taken when the satellite detects the thermal hotspot (fire already started).</span>',
-        comparison_before_li2: '<strong>Natural Capital Loss</strong><span>Inevitable damage to productive and native hectares.</span>',
-        comparison_before_li3: '<strong>Generalist Allocation</strong><span>Routine patrolling covering large zones without defined focus.</span>',
-        comparison_before_li4: '<strong>Operational Intuition</strong><span>Decisions based on experience, but without real-time data.</span>',
+        comparison_before_li1: "<strong>Post-incident response</strong><span>Action taken when the satellite detects the thermal hotspot (fire already started).</span>",
+        comparison_before_li2: "<strong>Natural Capital Loss</strong><span>Inevitable damage to productive and native hectares.</span>",
+        comparison_before_li3: "<strong>Generalist Allocation</strong><span>Routine patrolling covering large zones without defined focus.</span>",
+        comparison_before_li4: "<strong>Operational Intuition</strong><span>Decisions based on experience, but without real-time data.</span>",
         comparison_after_title: "GeoAlertAR Advantage (Preventive Management)",
-        comparison_after_li1: '<strong>Strategic Anticipation</strong><span>Extreme risk alert 7 days before ignition.</span>',
-        comparison_after_li2: '<strong>Asset Protection</strong><span>Preventive shielding of high economic/ecological value zones.</span>',
-        comparison_after_li3: '<strong>Precision Deployment</strong><span>Resource mobilization to exact risk coordinates.</span>',
-        comparison_after_li4: '<strong>Territorial Intelligence</strong><span>Command dashboard with water indices and Live Fuel Moisture.</span>',
+        comparison_after_li1: "<strong>Anticipation</strong><span>Risk conditions forecast up to 7 days ahead.</span>",
+        comparison_after_li2: "<strong>Asset priority</strong><span>Know which high-value economic or ecological zones enter high risk.</span>",
+        comparison_after_li3: "<strong>Focused deployment</strong><span>Resources and patrols where conditions are most critical, zone by zone.</span>",
+        comparison_after_li4: "<strong>Territorial intelligence</strong><span>Dashboard with fuel moisture, accumulated drought and 30-day trend.</span>",
         // Team
         team_title: "Who we are",
         team_p1: "GeoalertAR was born from an uncomfortable question: why, with all the satellite technology available, do we keep reacting when the fire is already burning?",
@@ -308,7 +271,7 @@ const translations = {
         apps_item3_title: "Insurance",
         apps_item3_desc: "Zone-based risk assessment for policy pricing and loss prevention.",
         apps_item4_title: "Fire Departments",
-        apps_item4_desc: "Tactical anticipation to pre-position resources where risk is imminent.",
+        apps_item4_desc: "Tactical anticipation to pre-position resources where conditions are most critical.",
         apps_item5_title: "NGOs and protected areas",
         apps_item5_desc: "Continuous monitoring of reserves and priority ecosystems to act before fire reaches them.",
         apps_cta: "Request a pilot",
@@ -319,343 +282,231 @@ const translations = {
         footer_text: "© 2026 GeoAlertAR — Developed in Argentina",
         // ODS/SDG
         ods_label: "GeoAlertAR contributes to the UN Sustainable Development Goals",
-        ods_disclaimer: 'GeoAlertAR independently adheres to these Sustainable Development Goals. This use is informational and does not imply endorsement or certification by the United Nations. <a href="maqueta-ods.html" target="_blank">See our contribution to the SDGs</a>'
+        ods_disclaimer: "GeoAlertAR independently adheres to these Sustainable Development Goals. This use is informational and does not imply endorsement or certification by the United Nations. <a href=\"maqueta-ods.html\" target=\"_blank\">See our contribution to the SDGs</a>",
+        // Landing v2 (13-oct-2026): mapa de hoy, "Como se calcula", "Del pronostico a la accion"
+        live_pill_pre: "Today's data",
+        live_pill_post: "zones at high risk or above",
+        data_card2_value: "Daily",
+        metodo_title: "How it's computed, every day",
+        metodo_subtitle: "A physical, published and auditable method: every level can be explained by the data that produced it.",
+        metodo_s1_t: "Rain",
+        metodo_s1_d: "Rainfall in the last 24 h, measured by satellite.",
+        metodo_s2_t: "Midday weather",
+        metodo_s2_d: "Temperature, humidity and wind at the most dangerous hour.",
+        metodo_s3_t: "Drought memory",
+        metodo_s3_d: "How much fine, medium and deep fuels have dried, day after day.",
+        metodo_s4_t: "FWI index",
+        metodo_s4_d: "The Canadian index (Van Wagner, 1987), an international standard.",
+        metodo_s5_t: "Level per zone",
+        metodo_s5_d: "One level per hexagon, combined with the local fuel.",
+        live_label: "Data for",
+        hex_locked_text: "Zone details —FWI index, fuel moisture, wind, accumulated drought and 7-day forecast— are available with professional access.",
+        hex_locked_cta: "Request access",
+        src_gfs: "Temperature, humidity and wind",
+        src_gsmap: "Satellite rainfall",
+        src_firms: "Hotspots",
+        src_esa: "Vegetation and fuel",
+        src_srtm: "Terrain and slope",
+        src_ign: "Boundaries and mapping",
+        accion_title: "From forecast to action",
+        accion_intro: "How it's used during a week of fire season. Illustrative example for a fire station.",
+        accion_d1_when: "Monday",
+        accion_d1_lvl: "Forecast: very high on Thursday",
+        accion_d1_txt: "The 7-day map shows the station's area reaching very high risk on Thursday: strong wind after three weeks without rain.",
+        accion_d2_when: "Tuesday and Wednesday",
+        accion_d2_lvl: "Preparation",
+        accion_d2_txt: "Thursday's shift is reinforced, equipment is checked and neighbors are asked not to burn.",
+        accion_d3_when: "Thursday",
+        accion_d3_lvl: "Critical day",
+        accion_d3_txt: "If a fire starts, the crew is already prepared and knows which areas have the driest fuel.",
+        live_pill_pre_old: "Data for",
+        mapa_error: "We couldn't load today's map. Please try again in a few minutes.",
+        risk_nodata: "NO DATA",
     }
 };
 
-// Configuración
-const RESERVA_NAME = "Reserva de Biosfera Andino Norpatagónica";
-const HEX_RADIUS = 0.06; // Radio del hexágono en grados (~6km)
+// ===== MAPA DE HOY (dato real) =====
+// Lee el GeoJSON publico (solo geometria + nivel) del Worker: /public/mapa.
+// El Worker v1.13 da CORS a www.geoalertar.com.ar y geoalertar.com.ar.
+// En Live Server (localhost) el Worker no responde a proposito: se usa una
+// copia local del MISMO GeoJSON (data/mapa_publico_muestra.geojson), asi se
+// prueba el mismo codigo que en produccion. Esa copia NO se publica.
+const ES_LOCAL = location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname);
+const MAPA_URL = ES_LOCAL ? 'data/mapa_publico_muestra.geojson' : 'https://api.appgeoalertar.com.ar/public/mapa';
+const NIVELES = ['BAJO', 'MODERADO', 'ALTO', 'MUY_ALTO', 'EXTREMO', 'SIN_DATOS'];
 
-// Corrección para distorsión de proyección a latitud -41°
-const LAT_CORRECTION = Math.cos(-41 * Math.PI / 180); // ~0.755
-
-// Función para generar hexágono FLAT-TOP (sin superposición)
-function createHexagon(centerLat, centerLng) {
-    const coords = [];
-    // Flat-top: vértices en 0°, 60°, 120°, 180°, 240°, 300°
-    for (let i = 0; i < 6; i++) {
-        const angle = (60 * i) * Math.PI / 180;
-        // Ajustar longitud por distorsión de proyección
-        const lng = centerLng + (HEX_RADIUS / LAT_CORRECTION) * Math.cos(angle);
-        const lat = centerLat + HEX_RADIUS * Math.sin(angle);
-        coords.push([lng, lat]);
-    }
-    coords.push(coords[0]);
-    return coords;
+// Fecha de hoy en Argentina (AAAA-MM-DD), para no llamar "de hoy" a un dato viejo.
+function hoyArgentina() {
+    return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
 }
 
-// Espaciado correcto para hexágonos flat-top contiguos
-const HORIZ_SPACING = (3 * HEX_RADIUS / 2) / LAT_CORRECTION;
-const VERT_SPACING = Math.sqrt(3) * HEX_RADIUS;
-
-// Point in polygon (ray casting algorithm)
-function pointInPolygon(lat, lng, polygon) {
-    let inside = false;
-    const coords = polygon[0]; // Primer anillo del polígono
-
-    for (let i = 0, j = coords.length - 1; i < coords.length; j = i++) {
-        const xi = coords[i][0], yi = coords[i][1];
-        const xj = coords[j][0], yj = coords[j][1];
-
-        if (((yi > lat) !== (yj > lat)) &&
-            (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi)) {
-            inside = !inside;
-        }
+// GeoJSON publico -> formato interno { fecha, niveles, hex: [[idxNivel, lon, lat, ...]] }.
+// Un hexagono con nivel desconocido o sin geometria se descarta (nunca se inventa).
+function desdeGeoJSON(gj) {
+    if (!gj || !Array.isArray(gj.features) || !/^\d{4}-\d{2}-\d{2}$/.test(gj.fecha_origen_datos || '')) {
+        throw new Error('Formato inesperado del mapa publico');
     }
-    return inside;
+    const hex = [];
+    gj.features.forEach(f => {
+        const idx = NIVELES.indexOf(f && f.properties && f.properties.nivel);
+        const anillo = f && f.geometry && f.geometry.type === 'Polygon' && f.geometry.coordinates[0];
+        if (idx < 0 || !Array.isArray(anillo) || anillo.length < 4) return;
+        const fila = [idx];
+        for (let i = 0; i < anillo.length - 1; i++) fila.push(anillo[i][0], anillo[i][1]); // sin el punto de cierre
+        hex.push(fila);
+    });
+    if (!hex.length) throw new Error('El mapa publico vino vacio');
+    return { fecha: gj.fecha_origen_datos, niveles: NIVELES, hex };
 }
 
-// Verificar si punto está en cualquier polígono del MultiPolygon
-function isInsideReserva(lat, lng, multiPolygon) {
-    for (const polygon of multiPolygon) {
-        if (pointInPolygon(lat, lng, polygon)) {
-            return true;
-        }
+function mostrarErrorMapa() {
+    const caja = document.getElementById('live-counts');
+    if (caja) {
+        caja.innerHTML = '<p class="live-error" data-i18n="mapa_error"></p>';
+        caja.firstChild.textContent = translations[currentLang].mapa_error;
+        caja.classList.add('on');
     }
-    return false;
+    const fecha = document.getElementById('live-date');
+    if (fecha && fecha.parentElement) fecha.parentElement.hidden = true;
+    const pill = document.getElementById('live-pill');
+    if (pill) pill.hidden = true;
 }
+const NIVEL_COLOR = { BAJO: '#22c55e', MODERADO: '#eab308', ALTO: '#f97316', MUY_ALTO: '#ea580c', EXTREMO: '#dc2626', SIN_DATOS: '#64748b' };
+const NIVEL_KEY = { BAJO: 'risk_low', MODERADO: 'risk_moderate', ALTO: 'risk_high', MUY_ALTO: 'risk_veryhigh', EXTREMO: 'risk_extreme', SIN_DATOS: 'risk_nodata' };
+const REDUCIR_MOVIMIENTO = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Techo de FWI usado en la demo (valor ilustrativo, no un límite real del índice)
-const DEMO_MAX_FWI = 58;
-
-// Distancia aproximada (en grados, corregida por latitud) entre un punto y el epicentro
-function distFromEpicenter(lat, lng, epicenter) {
-    const dLat = lat - epicenter.lat;
-    const dLng = (lng - epicenter.lng) * LAT_CORRECTION;
-    return Math.sqrt(dLat * dLat + dLng * dLng);
-}
-
-// Generar nivel de riesgo (FWI simulado) según la distancia a un epicentro,
-// para que el patrón se vea como un foco de calor que se atenúa hacia los bordes,
-// no como ruido aleatorio disperso.
-function generateRiskData(lat, lng, index, epicenter, maxDist) {
-    const dist = distFromEpicenter(lat, lng, epicenter);
-    const ratio = Math.min(1, dist / maxDist); // 0 = epicentro, 1 = borde más lejano
-
-    // Textura local para que no sea un degradado perfectamente liso
-    const seed = Math.abs(Math.sin(lat * 1000 + lng * 500 + index)) * 100;
-    const noise = (seed % 16) - 8;
-
-    let fwi = DEMO_MAX_FWI * (1 - ratio) + noise;
-    fwi = Math.max(1, Math.min(DEMO_MAX_FWI + 6, fwi));
-
-    let nivel;
-    if (fwi >= 46) nivel = "EXTREMO";
-    else if (fwi >= 28) nivel = "MUY_ALTO";
-    else if (fwi >= 15) nivel = "ALTO";
-    else if (fwi >= 6) nivel = "MODERADO";
-    else nivel = "BAJO";
-
-    const tempBase = { EXTREMO: 30, MUY_ALTO: 26, ALTO: 22, MODERADO: 17, BAJO: 12 };
-    const temp = tempBase[nivel] + (seed % 5);
-    const viento = nivel === "EXTREMO" ? 28 + (seed % 12) :
-                  nivel === "MUY_ALTO" ? 22 + (seed % 10) :
-                  nivel === "ALTO" ? 16 + (seed % 8) :
-                  nivel === "MODERADO" ? 10 + (seed % 6) : 4 + (seed % 4);
-    const precip = nivel === "EXTREMO" ? seed % 5 :
-                  nivel === "MUY_ALTO" ? 3 + (seed % 8) :
-                  nivel === "ALTO" ? seed % 12 :
-                  nivel === "MODERADO" ? 15 + (seed % 20) : 30 + (seed % 25);
-
-    // Pendiente del terreno (simulada, no depende del FWI)
-    const pendiente = 5 + (seed % 25);
-
-    return {
-        fwi: Math.round(fwi * 10) / 10,
-        nivel_riesgo: nivel,
-        temp_aire: Math.round(temp * 10) / 10,
-        viento_kmh: Math.round(viento * 10) / 10,
-        precip_7d: Math.round(precip * 10) / 10,
-        pendiente: Math.round(pendiente)
-    };
-}
-
-// Generar grilla hexagonal dentro de bounds
-function generateHexGridInBounds(bounds, multiPolygon) {
-    const features = [];
-
-    const startLat = bounds.getNorth();
-    const endLat = bounds.getSouth();
-    const startLng = bounds.getWest();
-    const endLng = bounds.getEast();
-
-    // Epicentro fijo (desplazado del centro geométrico para que no quede
-    // perfectamente simétrico) usado como foco del que se atenúa el riesgo.
-    const centerLat = (startLat + endLat) / 2;
-    const centerLng = (startLng + endLng) / 2;
-    const epicenter = {
-        lat: centerLat + (startLat - centerLat) * 0.35,
-        lng: centerLng + (startLng - centerLng) * 0.4
-    };
-    // Distancia máxima posible (a la esquina más lejana) para normalizar la atenuación
-    const corners = [
-        { lat: startLat, lng: startLng }, { lat: startLat, lng: endLng },
-        { lat: endLat, lng: startLng }, { lat: endLat, lng: endLng }
-    ];
-    const maxDist = Math.max(...corners.map(c => distFromEpicenter(c.lat, c.lng, epicenter)));
-
-    let index = 0;
-    let row = 0;
-
-    for (let lat = startLat; lat >= endLat; lat -= VERT_SPACING) {
-        // Offset para filas impares (la mitad del espaciado horizontal)
-        const offset = (row % 2) * (HORIZ_SPACING / 2);
-
-        for (let lng = startLng + offset; lng <= endLng; lng += HORIZ_SPACING) {
-            // Solo agregar si está dentro de la reserva
-            if (isInsideReserva(lat, lng, multiPolygon)) {
-                const riskData = generateRiskData(lat, lng, index, epicenter, maxDist);
-
-                features.push({
-                    type: "Feature",
-                    properties: {
-                        hex_id: `hex_${index}`,
-                        latitude: lat,
-                        longitude: lng,
-                        region: RESERVA_NAME,
-                        ...riskData
-                    },
-                    geometry: {
-                        type: "Polygon",
-                        coordinates: [createHexagon(lat, lng)]
-                    }
-                });
-                index++;
-            }
-        }
-        row++;
-    }
-    return { type: "FeatureCollection", features };
-}
-
-// Función para generar explicación según las variables
-function generateExplanation(props) {
-    const t = translations[currentLang];
-    const temp = props.temp_aire;
-    const viento = props.viento_kmh;
-    const lluvia = props.precip_7d;
-    const nivel = props.nivel_riesgo;
-
-    let reasons = [];
-
-    if (temp >= 28) {
-        reasons.push(t.explain_temp_very_high.replace('{value}', temp.toFixed(1)));
-    } else if (temp >= 22) {
-        reasons.push(t.explain_temp_high.replace('{value}', temp.toFixed(1)));
-    } else if (temp <= 10) {
-        reasons.push(t.explain_temp_low.replace('{value}', temp.toFixed(1)));
-    }
-
-    if (viento >= 25) {
-        reasons.push(t.explain_wind_very_strong.replace('{value}', viento.toFixed(1)));
-    } else if (viento >= 15) {
-        reasons.push(t.explain_wind_moderate.replace('{value}', viento.toFixed(1)));
-    } else if (viento < 5) {
-        reasons.push(t.explain_wind_calm);
-    }
-
-    if (lluvia < 2) {
-        reasons.push(t.explain_rain_none);
-    } else if (lluvia < 10) {
-        reasons.push(t.explain_rain_scarce.replace('{value}', lluvia.toFixed(1)));
-    } else if (lluvia >= 50) {
-        reasons.push(t.explain_rain_significant.replace('{value}', lluvia.toFixed(1)));
-    } else if (lluvia >= 20) {
-        reasons.push(t.explain_rain_moderate.replace('{value}', lluvia.toFixed(1)));
-    }
-
-    const introMap = { 'EXTREMO': t.explain_intro_extreme, 'MUY_ALTO': t.explain_intro_veryhigh, 'ALTO': t.explain_intro_high, 'MODERADO': t.explain_intro_moderate, 'BAJO': t.explain_intro_low };
-    let intro = introMap[nivel] || t.explain_intro_moderate;
-
-    return reasons.length > 0 ? intro + reasons.join(", ") + "." : intro + t.explain_fallback;
-}
-
-// Inicializar mapa (sin controles de zoom ni navegación)
-const map = L.map('map', {
-    zoomControl: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    touchZoom: false,
-    dragging: false,
-    keyboard: false
-}).setView([-41, -71.5], 7);
-
+const map = L.map('map', { zoomControl: true, scrollWheelZoom: false, preferCanvas: true, minZoom: 3, maxZoom: 9, zoomSnap: 0.25 });
+const ARGENTINA = [[-55.2, -73.6], [-21.8, -53.6]];
+map.fitBounds(ARGENTINA);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: ''
+    attribution: 'Esri'
 }).addTo(map);
 
-function getColor(fwi) {
-    if (fwi >= 46) return '#dc2626';
-    if (fwi >= 28) return '#ea580c';
-    if (fwi >= 15) return '#f97316';
-    if (fwi >= 6) return '#eab308';
-    return '#22c55e';
+const hexRenderer = L.canvas({ padding: 0.5 });
+let mapaDatos = null;
+let conteos = {};
+let mapaDibujado = false;
+let hexSeleccionado = null;
+
+function fmtNum(n) { return n.toLocaleString(currentLang === 'en' ? 'en-US' : 'es-AR'); }
+function fmtFecha(iso) {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(y, m - 1, d).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'es-AR', { day: 'numeric', month: 'long' });
 }
 
-function getRiskClass(nivel) {
-    return 'risk-' + nivel.toLowerCase();
+// Cuenta animada (respeta "reducir movimiento")
+function contar(el, hasta, ms = 1200, sufijo = '') {
+    if (REDUCIR_MOVIMIENTO) { el.textContent = fmtNum(hasta) + sufijo; return; }
+    const t0 = performance.now();
+    (function paso(t) {
+        const p = Math.min(1, (t - t0) / ms);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmtNum(Math.round(hasta * e)) + sufijo;
+        if (p < 1) requestAnimationFrame(paso);
+    })(t0);
 }
 
-// Estilo para hexágonos
-function hexStyle(feature) {
-    return {
-        fillColor: getColor(feature.properties.fwi),
-        weight: 1,
-        opacity: 1,
-        color: '#374151',
-        fillOpacity: 0.7
-    };
+function pintarConteos(animar) {
+    const t = translations[currentLang];
+    const caja = document.getElementById('live-counts');
+    const orden = ['EXTREMO', 'MUY_ALTO', 'ALTO', 'MODERADO', 'BAJO'];
+    const total = orden.reduce((a, k) => a + (conteos[k] || 0), 0) || 1;
+    caja.innerHTML = orden.map(k => `
+        <div class="live-row">
+            <span class="live-row-name"><i style="background:${NIVEL_COLOR[k]}"></i>${t[NIVEL_KEY[k]]}</span>
+            <span class="live-row-bar"><span style="--w:${(100 * (conteos[k] || 0) / total).toFixed(1)}%;background:${NIVEL_COLOR[k]}"></span></span>
+            <b class="live-row-n" data-n="${conteos[k] || 0}">${animar ? '0' : fmtNum(conteos[k] || 0)}</b>
+        </div>`).join('');
+    if (animar) caja.querySelectorAll('.live-row-n').forEach(el => contar(el, +el.dataset.n));
+    requestAnimationFrame(() => caja.classList.add('on'));
 }
 
-// Estilo para el contorno de la reserva
-function reservaStyle(feature) {
-    return {
-        fillColor: 'transparent',
-        weight: 2,
-        opacity: 1,
-        color: '#059669',
-        dashArray: '5, 5',
-        fillOpacity: 0
-    };
-}
-
-let hexLayer = null;
-
-function highlightFeature(e) {
-    e.target.setStyle({ weight: 2, color: '#0f172a', fillOpacity: 0.9 });
-    e.target.bringToFront();
-}
-
-function resetHighlight(e) {
-    if (hexLayer) hexLayer.resetStyle(e.target);
-}
-
-function onEachFeature(feature, layer) {
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: function(e) {
-            showHexInfo(feature.properties);
-        }
-    });
-}
-
-function showHexInfo(props) {
-    lastSelectedHexProps = props;
-    document.getElementById('sidebar-intro').style.display = 'none';
-    document.getElementById('hex-info').classList.add('active');
-
-    // Ocultar badge después del primer click
-    const badge = document.getElementById('map-badge');
-    if (badge && !badge.classList.contains('fade-out')) {
-        badge.classList.add('fade-out');
-        // Eliminar del DOM después de la animación
-        setTimeout(() => badge.remove(), 300);
+function pintarFechas() {
+    if (!mapaDatos) return;
+    document.getElementById('live-date').textContent = fmtFecha(mapaDatos.fecha);
+    document.getElementById('live-pill-date').textContent = fmtFecha(mapaDatos.fecha);
+    // "Dato de hoy" solo si el dato es de hoy; si no, "Dato del <fecha>".
+    const pre = document.querySelector('#live-pill [data-i18n^="live_pill_pre"]');
+    if (pre) {
+        const clave = mapaDatos.fecha === hoyArgentina() ? 'live_pill_pre' : 'live_pill_pre_old';
+        pre.setAttribute('data-i18n', clave);
+        pre.textContent = translations[currentLang][clave];
     }
-
-    const riskNameMap = { 'EXTREMO': translations[currentLang].risk_extreme, 'MUY_ALTO': translations[currentLang].risk_veryhigh, 'ALTO': translations[currentLang].risk_high, 'MODERADO': translations[currentLang].risk_moderate, 'BAJO': translations[currentLang].risk_low };
-    document.getElementById('hex-risk').textContent = riskNameMap[props.nivel_riesgo] || props.nivel_riesgo;
-    document.getElementById('hex-risk').className = 'hex-risk-badge ' + getRiskClass(props.nivel_riesgo);
-    document.getElementById('hex-prob-value').textContent = props.fwi.toFixed(1);
-    document.getElementById('hex-temp').textContent = props.temp_aire.toFixed(1);
-    document.getElementById('hex-wind').textContent = props.viento_kmh.toFixed(1);
-    document.getElementById('hex-rain').textContent = props.precip_7d.toFixed(1);
-    document.getElementById('hex-slope').textContent = props.pendiente;
-    document.getElementById('hex-explanation').textContent = generateExplanation(props);
 }
 
-// Cargar GeoJSON de la reserva
-fetch('Reserva_de_Biosfera_Andino_Norpatagonica.geojson')
-    .then(response => response.json())
-    .then(reservaData => {
-        // Mostrar contorno de la reserva
-        const reservaLayer = L.geoJSON(reservaData, {
-            style: reservaStyle
-        }).addTo(map);
+function showHexInfo(nivel) {
+    lastSelectedHexProps = nivel;
+    const t = translations[currentLang];
+    const badge = document.getElementById('map-badge');
+    if (badge && !badge.classList.contains('fade-out')) { badge.classList.add('fade-out'); setTimeout(() => badge.remove(), 300); }
+    document.getElementById('hex-info').classList.add('active');
+    const el = document.getElementById('hex-risk');
+    el.textContent = t[NIVEL_KEY[nivel]] || nivel;
+    el.className = 'hex-risk-badge risk-' + nivel.toLowerCase();
+}
 
-        // Obtener bounds y coordenadas del MultiPolygon
-        const bounds = reservaLayer.getBounds();
-        const multiPolygon = reservaData.features[0].geometry.coordinates;
+// Dibuja los hexagonos de norte a sur en tandas: el pais "aparece" en ~1,5 s.
+function dibujarMapa() {
+    if (mapaDibujado || !mapaDatos) return;
+    mapaDibujado = true;
+    const hexes = mapaDatos.hex.slice().sort((a, b) => b[2] - a[2]);
+    const capa = L.layerGroup().addTo(map);
+    const crear = h => {
+        const nivel = mapaDatos.niveles[h[0]];
+        const pts = []; for (let i = 1; i < h.length; i += 2) pts.push([h[i + 1], h[i]]);
+        const p = L.polygon(pts, { renderer: hexRenderer, stroke: false, fillColor: NIVEL_COLOR[nivel], fillOpacity: 0.72 });
+        p.on('click', () => {
+            if (hexSeleccionado) hexSeleccionado.setStyle({ stroke: false });
+            p.setStyle({ stroke: true, color: '#ffffff', weight: 2 });
+            hexSeleccionado = p;
+            showHexInfo(nivel);
+        });
+        capa.addLayer(p);
+    };
+    if (REDUCIR_MOVIMIENTO) { hexes.forEach(crear); return; }
+    const TANDAS = 45; const porTanda = Math.ceil(hexes.length / TANDAS); let i = 0;
+    (function tanda() {
+        hexes.slice(i, i + porTanda).forEach(crear); i += porTanda;
+        if (i < hexes.length) requestAnimationFrame(tanda);
+    })();
+}
 
-        // Generar hexágonos dentro de la reserva
-        const hexData = generateHexGridInBounds(bounds, multiPolygon);
-
-        // Mostrar hexágonos
-        hexLayer = L.geoJSON(hexData, {
-            style: hexStyle,
-            onEachFeature: onEachFeature
-        }).addTo(map);
-
-        // Ajustar vista solo a los hexágonos (no a toda la reserva)
-        if (hexData.features.length > 0) {
-            const hexBounds = hexLayer.getBounds();
-            map.fitBounds(hexBounds, { padding: [10, 10] });
-        }
+fetch(MAPA_URL)
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(gj => {
+        const datos = desdeGeoJSON(gj);
+        mapaDatos = datos;
+        conteos = {};
+        datos.hex.forEach(h => { const n = datos.niveles[h[0]]; conteos[n] = (conteos[n] || 0) + 1; });
+        pintarFechas();
+        // Pastilla del hero: zonas en ALTO o mas
+        const altoMas = (conteos.ALTO || 0) + (conteos.MUY_ALTO || 0) + (conteos.EXTREMO || 0);
+        const pill = document.getElementById('live-pill');
+        pill.hidden = false;
+        contar(document.getElementById('live-pill-n'), altoMas, 1400);
+        // Mapa y conteos: arrancan cuando la seccion entra en pantalla
+        const io = new IntersectionObserver(es => {
+            if (es.some(e => e.isIntersecting)) { io.disconnect(); map.invalidateSize(); map.fitBounds(ARGENTINA); dibujarMapa(); pintarConteos(true); }
+        }, { threshold: 0.25 });
+        io.observe(document.getElementById('map'));
     })
-    .catch(error => {
-        console.error('Error cargando GeoJSON:', error);
-    });
+    .catch(err => { console.error('No se pudo cargar el mapa de hoy:', err); mostrarErrorMapa(); });
+
+// ===== APARICION AL HACER SCROLL (metodo + tarjetas) =====
+(function () {
+    const items = document.querySelectorAll('.metodo-step, .data-card');
+    if (REDUCIR_MOVIMIENTO || !('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('visto')); return; }
+    document.documentElement.classList.add('anim');
+    const io = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('visto'); io.unobserve(e.target);
+        const n = e.target.querySelector('[data-count]');
+        if (n) contar(n, +n.dataset.count, 1200, n.dataset.suffix || '');
+    }), { threshold: 0.3 });
+    items.forEach((el, k) => { el.style.setProperty('--d', (k % 5) * 110 + 'ms'); io.observe(el); });
+    const linea = document.querySelector('.metodo-steps');
+    if (linea) new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { linea.classList.add('visto'); o.disconnect(); } }, { threshold: 0.3 }).observe(linea);
+})();
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -669,17 +520,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===== LANGUAGE SWITCHING =====
-// Acordeón "Ver todo lo que puede mostrar GeoAlertAR"
-function toggleDemoAccordion() {
-    const content = document.getElementById('demo-accordion-content');
-    const toggle = document.getElementById('demo-accordion-toggle');
-    content.classList.toggle('open');
-    toggle.classList.toggle('open');
-}
-
 function setLanguage(lang) {
     currentLang = lang;
-    localStorage.setItem('geoalert-lang', lang);
+    try { localStorage.setItem('geoalert-lang', lang); } catch (e) { /* sin almacenamiento: no pasa nada */ }
     document.documentElement.lang = lang;
 
     // Update plain text elements
@@ -703,6 +546,8 @@ function setLanguage(lang) {
     if (lastSelectedHexProps && document.getElementById('hex-info').classList.contains('active')) {
         showHexInfo(lastSelectedHexProps);
     }
+    if (typeof pintarFechas === 'function') pintarFechas();
+    if (typeof mapaDibujado !== 'undefined' && mapaDibujado) pintarConteos(false);
 }
 
 // Language toggle event listeners

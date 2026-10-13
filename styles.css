@@ -1310,3 +1310,98 @@ a:hover { text-decoration: underline; }
     .data-grid { grid-template-columns: repeat(2, 1fr); }
     #map { height: 320px; }
 }
+
+/* ============================================================
+   v2 (13-oct-2026): pastilla en vivo, mapa real, "como se calcula", animaciones
+   ============================================================ */
+.live-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 22px; padding: 8px 16px; border-radius: 999px;
+    background: rgba(15, 23, 42, 0.72); border: 1px solid rgba(255,255,255,0.18);
+    color: #e5e7eb; font-size: 0.92rem; text-decoration: none;
+    backdrop-filter: blur(6px); transition: background .2s, border-color .2s;
+}
+.live-pill:hover { background: rgba(15, 23, 42, 0.9); border-color: rgba(249,115,22,0.6); text-decoration: none; }
+.live-pill b { color: #fff; }
+.live-dot {
+    width: 9px; height: 9px; border-radius: 50%; background: #f97316; flex: none;
+    display: inline-block; box-shadow: 0 0 0 0 rgba(249,115,22,.6); animation: livePulse 2s infinite;
+}
+@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(249,115,22,.55); } 70% { box-shadow: 0 0 0 9px rgba(249,115,22,0); } 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); } }
+
+/* Mapa de hoy */
+.live-date { font-size: 0.85rem; color: var(--neutral-400); margin: -6px 0 16px; display: flex; align-items: center; gap: 8px; }
+.live-date b { color: #fff; font-weight: 600; }
+.live-counts { display: grid; gap: 9px; margin-bottom: 20px; }
+.live-row { display: grid; grid-template-columns: 92px 1fr 52px; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--neutral-300); }
+.live-row-name { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+.live-row-name i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.live-row-bar { height: 7px; background: var(--primary-800); border-radius: 4px; overflow: hidden; }
+.live-row-bar span { display: block; height: 100%; width: 0; border-radius: 4px; transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
+.live-counts.on .live-row-bar span { width: var(--w); }
+.live-row-n { text-align: right; color: #fff; font-variant-numeric: tabular-nums; }
+.hex-cta {
+    display: inline-block; margin-top: 4px; padding: 9px 16px; border-radius: 6px;
+    background: var(--accent); color: #fff; font-weight: 600; font-size: 0.88rem; text-decoration: none; align-self: flex-start;
+}
+.hex-cta:hover { background: #b91c1c; text-decoration: none; }
+.hex-info .demo-sidebar-intro { margin-bottom: 14px; }
+.leaflet-container { background: #0f172a; }
+
+/* Como se calcula */
+.metodo-section { padding: 72px 0 24px; background: var(--white); }
+.metodo-steps {
+    list-style: none; position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; counter-reset: paso;
+}
+.metodo-steps::before {
+    content: ""; position: absolute; top: 31px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, #eab308, #f97316, #dc2626); transform-origin: left;
+}
+.anim .metodo-steps::before { transform: scaleX(0); transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+.anim .metodo-steps.visto::before { transform: scaleX(1); }
+.metodo-step { position: relative; text-align: center; }
+.metodo-icon {
+    width: 62px; height: 62px; margin: 0 auto 14px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 1.35rem; color: #fff;
+    background: var(--primary-900); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--neutral-200);
+    position: relative; z-index: 1;
+}
+.metodo-step:nth-child(4) .metodo-icon { background: #dc2626; }
+.metodo-step-title { font-weight: 700; color: var(--primary-900); font-size: 0.98rem; margin-bottom: 4px; }
+.metodo-step-desc { font-size: 0.82rem; color: var(--neutral-600); line-height: 1.45; }
+
+/* Aparicion al hacer scroll (solo si JS activo y sin "reducir movimiento") */
+.anim .metodo-step, .anim .data-card { opacity: 0; transform: translateY(14px); transition: opacity .6s ease var(--d, 0ms), transform .6s ease var(--d, 0ms); }
+.anim .metodo-step.visto, .anim .data-card.visto { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+    .metodo-steps { grid-template-columns: 1fr; gap: 14px; max-width: 420px; margin: 0 auto; }
+    .metodo-steps::before { top: 10px; bottom: 10px; left: 30px; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, #eab308, #f97316, #dc2626); transform-origin: top; }
+    .anim .metodo-steps::before { transform: scaleY(0); }
+    .anim .metodo-steps.visto::before { transform: scaleY(1); }
+    .metodo-step { display: grid; grid-template-columns: 62px 1fr; column-gap: 16px; text-align: left; align-items: center; }
+    .metodo-icon { margin: 0; grid-row: span 2; }
+    .live-pill { font-size: 0.82rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .live-dot { animation: none; }
+    .live-row-bar span { transition: none; }
+}
+
+/* v2: fuentes de datos (texto) + del pronostico a la accion */
+.fuentes { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; max-width: 920px; margin: 0 auto; }
+.fuentes li { display: flex; flex-direction: column; align-items: center; line-height: 1.25; }
+.fuentes b { font-size: 0.95rem; color: var(--primary-900); letter-spacing: 0.02em; }
+.fuentes span { font-size: 0.74rem; color: var(--neutral-500); }
+.accion-intro { max-width: 640px; }
+.accion-timeline { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
+.accion-dia { background: var(--primary-800); border: 1px solid var(--primary-700); border-radius: 10px; padding: 20px; position: relative; }
+.accion-cuando { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--neutral-400); margin-bottom: 8px; }
+.accion-nivel { display: inline-block; font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; }
+.accion-dia p { font-size: 0.92rem; color: var(--neutral-300); line-height: 1.55; margin: 0; }
+@media (max-width: 900px) { .accion-timeline { grid-template-columns: 1fr; } }
+.fuentes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 24px; max-width: 760px; }
+@media (max-width: 600px) { .fuentes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* v2 Paso 2 (13-oct-2026): aviso si el mapa publico no carga (nunca numeros inventados) */
+.live-error { margin: 0; font-size: 0.85rem; line-height: 1.4; color: var(--neutral-300); }
